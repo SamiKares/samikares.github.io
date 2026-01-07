@@ -12,7 +12,6 @@
         @media (min-width: 768px) { .gallery-grid { columns: 2; } }
         @media (min-width: 1024px) { .gallery-grid { columns: 3; } }
         
-        /* Lightbox Styles */
         #lightbox {
             display: none;
             position: fixed;
@@ -41,64 +40,105 @@
     <nav class="bg-black/90 text-white py-6 px-6 sticky top-0 z-50 border-b border-gray-800 backdrop-blur-md">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="index.html" class="font-bold text-2xl tracking-tighter uppercase">Sami Karesniemi</a>
-        <div class="space-x-6 text-sm uppercase tracking-wider">
-            <a href="index.html" class="hover:text-blue-400 transition">Resume</a>
-            <a href="photography.html" class="hover:text-blue-400 transition">Photography</a>
-            <a href="ai.html" class="border-b-2 border-blue-400">AI Portfolio</a>
-</div>
+            <div class="space-x-8 text-sm uppercase tracking-widest">
+                <a href="index.html" class="text-gray-400 hover:text-white transition">Resume</a>
+                <a href="photography.html" class="text-white border-b border-white pb-1">Portfolio</a>
+            </div>
         </div>
     </nav>
 
-    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <header class="py-24 px-6 max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight">Visual Storytelling.</h1>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed italic border-l-2 border-gray-800 pl-4 md:pl-0 md:border-none">
-            "Primarily focused on fine art photography, but available for commercial commissions upon request. Let’s connect."
-        </p>
+        <div class="space-y-4">
+            <p class="text-gray-400 text-lg leading-relaxed italic">
+                "A documentary approach: capturing real moments, not staged poses."
+            </p>
+            <p class="text-gray-500 text-sm uppercase tracking-widest">
+                Primarily focused on fine art, but available for commercial commissions.
+            </p>
+        </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 pb-24">
-        <div class="gallery-grid">
-            
-            <script>
-                const images = [
-                    "5_frames_per_sec.jpg", "damhotel.jpg", "eagles_nest.jpg", "galaxy.jpg", 
-                    "going_fast.jpg", "i_love_ny.jpg", "jalkaikkunassa7.jpg", "kiesitropiparempi.jpg", 
-                    "lego_car.jpg", "lohe_blunt.jpg", "nitro_in_the_sky.jpg", "rabbit.jpg", 
-                    "redbull_minisession.jpg", "sakkosurf.jpg", "vesa.jpg"
-                ];
+        <div class="gallery-grid" id="portfolio-grid">
+            </div>
 
-                const grid = document.currentScript.parentElement;
-                
-                images.forEach(imgName => {
-                    const cleanName = imgName.replace('.jpg', '').replace(/_/g, ' ');
-                    const item = `
-                        <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer" 
-                             onclick="openLightbox('portfolio-images/${imgName}', '${cleanName}')">
-                            <img src="portfolio-images/${imgName}" alt="${cleanName}" class="w-full opacity-80 group-hover:opacity-100 transition duration-500">
-                            <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition duration-300">
-                                <p class="text-xs uppercase tracking-widest">${cleanName}</p>
-                            </div>
-                        </div>
-                    `;
-                    grid.insertAdjacentHTML('beforeend', item);
-                });
-
-                function openLightbox(src, caption) {
-                    const lb = document.getElementById('lightbox');
-                    const lbImg = document.getElementById('lightbox-img');
-                    const lbCap = document.getElementById('lightbox-caption');
-                    lbImg.src = src;
-                    lbCap.innerText = caption;
-                    lb.style.display = 'flex';
-                }
-            </script>
-
+        <div class="mt-12 mb-24 overflow-hidden rounded-sm photo-card bg-blue-900/10 border border-blue-500/20 flex flex-col items-center justify-center p-16 text-center group cursor-pointer">
+            <i class="fas fa-play-circle text-5xl mb-4 text-blue-500 group-hover:scale-110 transition duration-500"></i>
+            <p class="text-sm font-bold uppercase tracking-widest">Showreel 2026</p>
+            <p class="text-xs text-gray-500 mt-2 italic">Professional video production highlights</p>
         </div>
+
+        <hr class="border-gray-900 mb-24">
+
+        <section class="max-w-xl mx-auto bg-gray-900/30 p-12 rounded-sm border border-gray-800">
+            <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-gray-400 mb-8 text-center">Get in Touch</h3>
+            <ul class="space-y-6 text-sm">
+                <li class="flex items-center gap-4 group">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-blue-900 transition">
+                        <i class="fas fa-phone text-blue-400"></i>
+                    </div>
+                    <span>+358 45 105 1616</span>
+                </li>
+                <li class="flex items-center gap-4 group">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-blue-900 transition">
+                        <i class="fas fa-envelope text-blue-400"></i>
+                    </div>
+                    <a href="mailto:sami.karesniemi@gmail.com" class="hover:text-blue-400 transition">sami.karesniemi@gmail.com</a>
+                </li>
+                <li class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt text-blue-400"></i>
+                    </div>
+                    <span>Helsinki, Finland</span>
+                </li>
+                <li class="flex items-center gap-4 group">
+                    <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-blue-900 transition">
+                        <i class="fab fa-linkedin text-blue-400"></i>
+                    </div>
+                    <a href="#" class="hover:text-blue-400 transition">linkedin.com/in/sami-karesniemi</a>
+                </li>
+            </ul>
+        </section>
     </main>
 
-    <footer class="border-t border-gray-900 py-12 px-6 text-center text-gray-500 text-sm tracking-widest uppercase">
+    <footer class="border-t border-gray-900 py-12 px-6 text-center text-gray-600 text-xs tracking-[0.4em] uppercase">
         <p>Sami Karesniemi &copy; 2006-2026</p>
     </footer>
+
+    <script>
+        const images = [
+            "5_frames_per_sec.jpg", "damhotel.jpg", "eagles_nest.jpg", "galaxy.jpg", 
+            "going_fast.jpg", "i_love_ny.jpg", "jalkaikkunassa7.jpg", "kiesitropiparempi.jpg", 
+            "lego_car.jpg", "lohe_blunt.jpg", "nitro_in_the_sky.jpg", "rabbit.jpg", 
+            "redbull_minisession.jpg", "sakkosurf.jpg", "vesa.jpg"
+        ];
+
+        const grid = document.getElementById('portfolio-grid');
+        
+        images.forEach(imgName => {
+            const cleanName = imgName.replace('.jpg', '').replace(/_/g, ' ');
+            const item = `
+                <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer" 
+                     onclick="openLightbox('portfolio-images/${imgName}', '${cleanName}')">
+                    <img src="portfolio-images/${imgName}" alt="${cleanName}" class="w-full opacity-70 group-hover:opacity-100 transition duration-700">
+                    <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/80 to-transparent w-full opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-white">${cleanName}</p>
+                    </div>
+                </div>
+            `;
+            grid.insertAdjacentHTML('beforeend', item);
+        });
+
+        function openLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCap = document.getElementById('lightbox-caption');
+            lbImg.src = src;
+            lbCap.innerText = caption;
+            lb.style.display = 'flex';
+        }
+    </script>
 
 </body>
 </html>
