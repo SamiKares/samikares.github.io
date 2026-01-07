@@ -11,154 +11,99 @@
         .gallery-grid { columns: 1; gap: 1.5rem; }
         @media (min-width: 768px) { .gallery-grid { columns: 2; } }
         @media (min-width: 1024px) { .gallery-grid { columns: 3; } }
+        
+        /* Lightbox Styles */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body class="bg-black text-white font-sans">
 
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+        <p id="lightbox-caption" class="absolute bottom-10 text-xs uppercase tracking-[0.3em] text-gray-400"></p>
+    </div>
+
     <nav class="bg-black/90 text-white py-6 px-6 sticky top-0 z-50 border-b border-gray-800 backdrop-blur-md">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="index.html" class="font-bold text-2xl tracking-tighter uppercase">Sami Karesniemi</a>
-              <div class="space-x-6 text-sm uppercase tracking-wider">
-                    <a href="index.html" class="hover:text-blue-400 transition">Resume</a>
-                    <a href="photography.html" class="hover:text-blue-400 transition">Photography</a>
-                    <a href="ai.html" class="border-b-2 border-blue-400">AI Portfolio</a>
+            <div class="space-x-8 text-sm uppercase tracking-widest">
+                <a href="index.html" class="text-gray-400 hover:text-white transition">Resume</a>
+                <a href="photography.html" class="text-white border-b border-white pb-1">Portfolio</a>
             </div>
         </div>
     </nav>
 
     <header class="py-20 px-6 max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight">Visual Storytelling.</h1>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            Valokuvausta pääosin omaksi ilokseni, keikat kelpaa, hinnat varmasti kohdallaan.
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed italic border-l-2 border-gray-800 pl-4 md:pl-0 md:border-none">
+            "A documentary approach: capturing real moments, not staged poses."
         </p>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 pb-24">
-        
-        <div class="flex justify-center gap-8 mb-12 text-xs uppercase tracking-widest text-gray-500">
-            <button class="text-white border-b border-white">Kaikki</button>
-            <button class="hover:text-white transition">Events</button>
-            <button class="hover:text-white transition">Commercial</button>
-            <button class="hover:text-white transition">Editorial</button>
-        </div>
-
         <div class="gallery-grid">
             
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/5_frames_per_sec.jpg" alt="5 Frames Per Sec" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">5 Frames Per Sec</p>
+            <script>
+                const images = [
+                    "5_frames_per_sec.jpg", "damhotel.jpg", "eagles_nest.jpg", "galaxy.jpg", 
+                    "going_fast.jpg", "i_love_ny.jpg", "jalkaikkunassa7.jpg", "kiesitropiparempi.jpg", 
+                    "lego_car.jpg", "lohe_blunt.jpg", "nitro_in_the_sky.jpg", "rabbit.jpg", 
+                    "redbull_minisession.jpg", "sakkosurf.jpg", "vesa.jpg"
+                ];
+
+                const grid = document.currentScript.parentElement;
+                
+                images.forEach(imgName => {
+                    const cleanName = imgName.replace('.jpg', '').replace(/_/g, ' ');
+                    const item = `
+                        <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer" 
+                             onclick="openLightbox('portfolio-images/${imgName}', '${cleanName}')">
+                            <img src="portfolio-images/${imgName}" alt="${cleanName}" class="w-full opacity-80 group-hover:opacity-100 transition duration-500">
+                            <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition duration-300">
+                                <p class="text-xs uppercase tracking-widest">${cleanName}</p>
+                            </div>
+                        </div>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', item);
+                });
+
+                function openLightbox(src, caption) {
+                    const lb = document.getElementById('lightbox');
+                    const lbImg = document.getElementById('lightbox-img');
+                    const lbCap = document.getElementById('lightbox-caption');
+                    lbImg.src = src;
+                    lbCap.innerText = caption;
+                    lb.style.display = 'flex';
+                }
+            </script>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-blue-900/20 border border-blue-500/30 flex items-center justify-center p-12 text-center group cursor-pointer">
+                <div>
+                    <i class="fas fa-play-circle text-4xl mb-4 text-blue-500 group-hover:scale-110 transition"></i>
+                    <p class="text-sm font-bold uppercase tracking-widest">Showreel 2026</p>
+                    <p class="text-xs text-gray-400 mt-2 italic">Video production highlight</p>
                 </div>
             </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/damhotel.jpg" alt="Damhotel" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Damhotel</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/eagles_nest.jpg" alt="Eagles Nest" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Eagles Nest</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/galaxy.jpg" alt="Galaxy" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Galaxy</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/going_fast.jpg" alt="Going Fast" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Going Fast</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/i_love_ny.jpg" alt="I Love NY" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">I Love NY</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/jalkaikkunassa7.jpg" alt="Jalkaikkunassa" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Jalkaikkunassa</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/kiesitropiparempi.jpg" alt="Kiesitropiparempi" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Kiesitropiparempi</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/lego_car.jpg" alt="Lego Car" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Lego Car</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/lohe_blunt.jpg" alt="Lohe Blunt" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Lohe Blunt</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/nitro_in_the_sky.jpg" alt="Nitro in the Sky" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Nitro in the Sky</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/rabbit.jpg" alt="Rabbit" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Rabbit</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/redbull_minisession.jpg" alt="Redbull Minisession" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Redbull Minisession</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/sakkosurf.jpg" alt="Sakkosurf" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Sakkosurf</p>
-                </div>
-            </div>
-
-            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
-                <img src="portfolio-images/vesa.jpg" alt="Vesa" class="w-full opacity-80 group-hover:opacity-100">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
-                    <p class="text-xs uppercase tracking-widest">Vesa</p>
-                </div>
-            </div>
-
-            
         </div>
     </main>
 
     <footer class="border-t border-gray-900 py-12 px-6 text-center text-gray-500 text-sm tracking-widest uppercase">
         <p>Sami Karesniemi &copy; 2006-2026</p>
-        <div class="mt-4 space-x-4">
-            <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="hover:text-white"><i class="fab fa-vimeo-v"></i></a>
-        </div>
     </footer>
 
 </body>
