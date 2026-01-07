@@ -1,71 +1,86 @@
-<script>
-    // --- CONFIGURATION ---
-    const GITHUB_USERNAME = 'SamiKares'; 
-    const REPO_NAME = 'samikares.github.io'; // Ensure casing matches your repo exactly
-    const FOLDER_PATH = 'portfolio-images'; 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Sami Karesniemi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gallery-grid { columns: 1; gap: 1.5rem; }
+        @media (min-width: 768px) { .gallery-grid { columns: 2; } }
+        @media (min-width: 1024px) { .gallery-grid { columns: 3; } }
+        .img-container { break-inside: avoid; margin-bottom: 1.5rem; transition: 0.3s; }
+        body { background-color: #000; }
+    </style>
+</head>
+<body class="text-white font-sans">
 
-    async function loadPhotos() {
+    <!-- Navigation -->
+    <nav class="bg-black/90 text-white py-6 px-6 sticky top-0 z-50 border-b border-gray-800 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="font-bold text-2xl tracking-tighter uppercase">SAMI <span class="text-blue-500">K.</span></a>
+            <div class="space-x-8 text-xs uppercase tracking-widest">
+                <a href="index.html" class="text-gray-400 hover:text-white transition">Resume</a>
+                <a href="photography.html" class="text-white border-b border-white pb-1">Photography</a>
+                <a href="ai.html" class="text-gray-400 hover:text-white transition">AI Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl font-light mb-4 tracking-tight">Gallery</h1>
+        <p class="text-gray-500 uppercase tracking-[0.3em] text-xs">Professional Media Production</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div id="photo-gallery" class="gallery-grid">
+            <!-- Images will be injected here -->
+        </div>
+    </main>
+
+    <script>
+        // --- 1. LIST YOUR PHOTOS HERE ---
+        // Just add the filename whenever you upload a new photo to your folder
+        const PHOTOS = [
+            '5_frames_per_sec.jpg'
+            'eagles_nest.jpg'    
+            'galaxy.jpg'          
+            'i_love_ny.jpg'       
+            'lego_car.jpg'        
+            'nitro_in_the_sky.jpg'
+            'vesa.jpg'            
+        ];
+
+        // --- 2. CONFIGURATION ---
+        const FOLDER = 'portfolio-images'; // Your folder name
+
         const gallery = document.getElementById('photo-gallery');
-        
-        try {
-            // 1. We construct the URL dynamically using the variables above
-            const apiUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FOLDER_PATH}`;
-            
-            const response = await fetch(apiUrl);
 
-            // 2. Safety check: GitHub limits free API calls to 60/hour. 
-            // If we hit the limit, we show a helpful error.
-            if (response.status === 403) {
-                throw new Error('GitHub API rate limit exceeded. Try again in an hour.');
-            }
-            
-            if (!response.ok) {
-                 throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            // Clear skeletons
-            gallery.innerHTML = '';
-
-            // Filter for images only
-            const images = data.filter(file => 
-                file.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)
-            );
-
-            if (images.length === 0) {
-                gallery.innerHTML = '<p class="text-gray-500 text-center col-span-full">No photos found in folder.</p>';
-                return;
-            }
-
-            // Generate HTML for each image
-            images.forEach(image => {
-                const container = document.createElement('div');
-                container.className = 'img-container group relative overflow-hidden rounded-sm bg-gray-900 mb-6 break-inside-avoid';
-                
-                // Clean up the filename for the label (remove extension and hyphens)
-                const label = image.name.split('.')[0].replace(/-/g, ' ');
-
-                container.innerHTML = `
+        function renderGallery() {
+            gallery.innerHTML = PHOTOS.map(fileName => `
+                <div class="img-container group relative overflow-hidden rounded-sm bg-gray-900">
                     <img 
-                        src="${image.download_url}" 
-                        alt="${label}"
-                        class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
+                        src="${FOLDER}/${fileName}" 
+                        alt="${fileName}"
+                        class="w-full opacity-90 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-105"
                         loading="lazy"
+                        onerror="this.parentElement.style.display='none'"
                     >
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <span class="text-[10px] uppercase tracking-widest text-white/90 font-medium">${label}</span>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-white/80 border-l border-blue-500 pl-3">
+                            ${fileName.split('.')[0].replace(/-/g, ' ')}
+                        </span>
                     </div>
-                `;
-                gallery.appendChild(container);
-            });
-
-        } catch (error) {
-            console.error('Error loading images:', error);
-            // Show the error on screen so you know what went wrong
-            gallery.innerHTML = `<p class="text-red-500 text-center col-span-full text-sm font-mono mt-10">System Status: ${error.message}</p>`;
+                </div>
+            `).join('');
         }
-    }
 
-    loadPhotos();
-</script>
+        renderGallery();
+    </script>
+
+    <footer class="border-t border-gray-900 py-12 text-center text-gray-600 text-[10px] uppercase tracking-widest">
+        &copy; Sami Karesniemi // 2006-2026
+    </footer>
+</body>
+</html>
