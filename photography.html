@@ -1,86 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photography | Sami Karesniemi</title>
+    <title>Portfolio | Sami Karesniemi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        .photo-card:hover img { transform: scale(1.05); transition: 0.5s ease; }
         .gallery-grid { columns: 1; gap: 1.5rem; }
         @media (min-width: 768px) { .gallery-grid { columns: 2; } }
         @media (min-width: 1024px) { .gallery-grid { columns: 3; } }
-        .img-container { break-inside: avoid; margin-bottom: 1.5rem; transition: 0.3s; }
-        body { background-color: #000; }
     </style>
 </head>
-<body class="text-white font-sans">
+<body class="bg-black text-white font-sans">
 
-    <!-- Navigation -->
     <nav class="bg-black/90 text-white py-6 px-6 sticky top-0 z-50 border-b border-gray-800 backdrop-blur-md">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <a href="index.html" class="font-bold text-2xl tracking-tighter uppercase">SAMI <span class="text-blue-500">K.</span></a>
-            <div class="space-x-8 text-xs uppercase tracking-widest">
+            <a href="index.html" class="font-bold text-2xl tracking-tighter uppercase">Sami Karesniemi</a>
+            <div class="space-x-8 text-sm uppercase tracking-widest">
                 <a href="index.html" class="text-gray-400 hover:text-white transition">Resume</a>
-                <a href="photography.html" class="text-white border-b border-white pb-1">Photography</a>
-                <a href="ai.html" class="text-gray-400 hover:text-white transition">AI Portfolio</a>
+                <a href="photography.html" class="text-white border-b border-white pb-1">Portfolio</a>
             </div>
         </div>
     </nav>
 
     <header class="py-20 px-6 max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl font-light mb-4 tracking-tight">Gallery</h1>
-        <p class="text-gray-500 uppercase tracking-[0.3em] text-xs">Professional Media Production</p>
+        <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight">Visual Storytelling.</h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+            Erikoistunut ammattimaiseen valokuvaukseen ja videotuotantoon yli 15 vuoden kokemuksella. 
+            Tekninen silmä kohtaa taiteellisen vision.
+        </p>
     </header>
 
     <main class="max-w-7xl mx-auto px-6 pb-24">
-        <div id="photo-gallery" class="gallery-grid">
-            <!-- Images will be injected here -->
+        
+        <div class="flex justify-center gap-8 mb-12 text-xs uppercase tracking-widest text-gray-500">
+            <button class="text-white border-b border-white">Kaikki</button>
+            <button class="hover:text-white transition">Events</button>
+            <button class="hover:text-white transition">Commercial</button>
+            <button class="hover:text-white transition">Editorial</button>
+        </div>
+
+        <div class="gallery-grid">
+            
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/5_frames_per_sec.jpg" alt="5 Frames Per Sec" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">5 Frames Per Sec</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/damhotel.jpg" alt="Damhotel" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Damhotel</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/eagles_nest.jpg" alt="Eagles Nest" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Eagles Nest</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/galaxy.jpg" alt="Galaxy" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Galaxy</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/going_fast.jpg" alt="Going Fast" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Going Fast</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/i_love_ny.jpg" alt="I Love NY" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">I Love NY</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/jalkaikkunassa7.jpg" alt="Jalkaikkunassa" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Jalkaikkunassa</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/kiesitropiparempi.jpg" alt="Kiesitropiparempi" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Kiesitropiparempi</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/lego_car.jpg" alt="Lego Car" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Lego Car</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/lohe_blunt.jpg" alt="Lohe Blunt" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Lohe Blunt</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/nitro_in_the_sky.jpg" alt="Nitro in the Sky" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Nitro in the Sky</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/rabbit.jpg" alt="Rabbit" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Rabbit</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/redbull_minisession.jpg" alt="Redbull Minisession" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Redbull Minisession</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/sakkosurf.jpg" alt="Sakkosurf" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Sakkosurf</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-gray-900 group relative cursor-pointer">
+                <img src="portfolio-images/vesa.jpg" alt="Vesa" class="w-full opacity-80 group-hover:opacity-100">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full opacity-0 group-hover:opacity-100 transition">
+                    <p class="text-xs uppercase tracking-widest">Vesa</p>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-hidden rounded-sm photo-card bg-blue-900/20 border border-blue-500/30 flex items-center justify-center p-12 text-center group">
+                <div>
+                    <i class="fas fa-play-circle text-4xl mb-4 text-blue-500 group-hover:scale-110 transition"></i>
+                    <p class="text-sm font-bold uppercase tracking-widest">Showreel 2026</p>
+                    <p class="text-xs text-gray-400 mt-2 italic">Video production highlight</p>
+                </div>
+            </div>
         </div>
     </main>
 
-    <script>
-        // --- 1. LIST YOUR PHOTOS HERE ---
-        // Just add the filename whenever you upload a new photo to your folder
-        const PHOTOS = [
-            '5_frames_per_sec.jpg',
-            'eagles_nest.jpg',    
-            'galaxy.jpg',          
-            'i_love_ny.jpg',       
-            'lego_car.jpg',        
-            'nitro_in_the_sky.jpg',
-            'vesa.jpg'            
-        ];
-
-        // --- 2. CONFIGURATION ---
-        const FOLDER = 'portfolio-images'; // Your folder name
-
-        const gallery = document.getElementById('photo-gallery');
-
-        function renderGallery() {
-            gallery.innerHTML = PHOTOS.map(fileName => `
-                <div class="img-container group relative overflow-hidden rounded-sm bg-gray-900">
-                    <img 
-                        src="${FOLDER}/${fileName}" 
-                        alt="${fileName}"
-                        class="w-full opacity-90 group-hover:opacity-100 transition-all duration-700 transform group-hover:scale-105"
-                        loading="lazy"
-                        onerror="this.parentElement.style.display='none'"
-                    >
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-white/80 border-l border-blue-500 pl-3">
-                            ${fileName.split('.')[0].replace(/-/g, ' ')}
-                        </span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        renderGallery();
-    </script>
-
-    <footer class="border-t border-gray-900 py-12 text-center text-gray-600 text-[10px] uppercase tracking-widest">
-        &copy; Sami Karesniemi // 2006-2026
+    <footer class="border-t border-gray-900 py-12 px-6 text-center text-gray-500 text-sm tracking-widest uppercase">
+        <p>Sami Karesniemi &copy; 2006-2026</p>
+        <div class="mt-4 space-x-4">
+            <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-white"><i class="fab fa-vimeo-v"></i></a>
+        </div>
     </footer>
+
 </body>
 </html>
