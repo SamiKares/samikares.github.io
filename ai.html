@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;700&display=swap');
-        body { background-color: #020617; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        body { background-color: #020617; color: #f8fafc; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .code-font { font-family: 'Fira Code', monospace; }
         .terminal-card { 
             background: #0f172a; 
@@ -39,17 +39,20 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <div class="status-dot"></div>
-                <span class="code-font font-bold text-lg tracking-tighter uppercase">Sami.Karesniemi <span class="text-blue-500">_root</span></span>
+                <a href="index.html" class="code-font font-bold text-lg tracking-tighter uppercase group">
+                    SAMI.KARESNIEMI <span class="text-blue-500 group-hover:text-white transition">_root</span>
+                </a>
             </div>
             <div class="hidden md:flex gap-10 text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">
-                <a href="#projects" class="hover:text-blue-400 transition">Systems</a>
+                <a href="index.html" class="hover:text-blue-400 transition">Resume</a>
                 <a href="#stack" class="hover:text-blue-400 transition">Stack</a>
+                <a href="#projects" class="text-white border-b border-blue-500 pb-1">AI_Portfolio</a>
                 <a href="photography.html" class="hover:text-blue-400 transition">Photography</a>
             </div>
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
+    <header class="pt-48 pb-20 px-6 max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div>
                 <span class="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-6 border border-blue-500/20">
@@ -63,10 +66,10 @@
                 </p>
                 <div class="flex gap-4">
                     <a href="mailto:sami.karesniemi@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-sm font-bold text-xs uppercase transition-all">Connect _</a>
-                    <a href="https://github.com/SamiKares" class="border border-slate-700 hover:border-slate-400 px-8 py-4 rounded-sm font-bold text-xs uppercase transition-all">View Source</a>
+                    <a href="index.html" class="border border-slate-700 hover:border-slate-400 px-8 py-4 rounded-sm font-bold text-xs uppercase transition-all">View Resume</a>
                 </div>
             </div>
-            <div class="relative">
+            <div class="relative hidden lg:block">
                 <div class="bg-slate-900 border border-slate-800 p-8 rounded shadow-2xl code-font text-sm leading-relaxed">
                     <p class="text-blue-400">// System Profile 2026</p>
                     <p class="text-slate-500">>> status: online</p>
@@ -80,77 +83,35 @@
         </div>
     </header>
 
-    <section id="projects" class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-900">
-        <h2 class="text-3xl font-bold mb-16 flex items-center gap-4">
-            <span class="w-12 h-px bg-blue-500"></span> 
-            Featured Implementations
-        </h2>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            
-            <div class="terminal-card p-10 group">
-                <div class="flex justify-between items-start mb-6">
-                    <i class="fas fa-chart-line text-2xl text-blue-500"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">ML_ENGINE // PYTHON</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Algorithmic Trading & ML Bot</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    A full-scale day-trading engine utilizing `yfinance` and Random Forest models for market prediction. Orchestrated via AI for rapid debugging and UI localization.
-                </p>
-                <div class="flex gap-3 text-[10px] font-bold text-slate-500">
-                    <span>#Scikit-Learn</span><span>#DataSynthesis</span><span>#Automation</span>
-                </div>
+    <section id="stack" class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-900">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div>
+                <h2 class="text-xs font-bold text-blue-500 uppercase tracking-[0.5em] mb-4">Core Competencies</h2>
+                <p class="text-3xl font-bold tracking-tight">Technical Stack Matrix</p>
             </div>
-
-            <div class="terminal-card p-10 group">
-                <div class="flex justify-between items-start mb-6">
-                    <i class="fas fa-truck-ramp-box text-2xl text-purple-500"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">RAG_SYSTEM // LOGISTICS</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Agentic Fleet Onboarding</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Leveraging 15+ years of driving experience to build an AI onboarding system. Uses Gemini 1.5's long context window to synthesize routing logic and operational handbooks into an interactive assistant.
-                </p>
-                <div class="flex gap-3 text-[10px] font-bold text-slate-500">
-                    <span>#GeminiAPI</span><span>#VectorDB</span><span>#DomainExpertise</span>
-                </div>
-            </div>
-
-            <div class="terminal-card p-10 group">
-                <div class="flex justify-between items-start mb-6">
-                    <i class="fas fa-brain text-2xl text-green-500"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">EDUCATION // MATH_STYLIZED</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Transformer Visualizer</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    A mathematically correct Python visualization suite designed to educate on Self-Attention, Positional Encoding, and Softmax prediction pipelines in ultrawide 3440x1440px.
-                </p>
-                <div class="flex gap-3 text-[10px] font-bold text-slate-500">
-                    <span>#Matplotlib</span><span>#AttentionMechanism</span><span>#LLM_Ed</span>
-                </div>
-            </div>
-
-            <div class="terminal-card p-10 group">
-                <div class="flex justify-between items-start mb-6">
-                    <i class="fas fa-microchip text-2xl text-yellow-500"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">IOT // EMBEDDED_C</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Predictive Maintenance Bridge</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Developed MQTT-based bridges connecting ESP32 sensor clusters to LLM-powered telemetry analysis, translating raw hardware noise into human-actionable maintenance reports.
-                </p>
-                <div class="flex gap-3 text-[10px] font-bold text-slate-500">
-                    <span>#ESP32</span><span>#ClaudeCode</span><span>#NetworkArchitecture</span>
-                </div>
-            </div>
-
+            <a href="index.html" class="code-font text-xs text-blue-400 hover:text-white transition flex items-center gap-2">
+                <i class="fas fa-file-pdf"></i> VIEW_FULL_RESUME.SYS
+            </a>
         </div>
-    </section>
 
-    <footer class="py-20 border-t border-slate-900 text-center">
-        <p class="text-[10px] text-slate-600 uppercase tracking-[0.5em] mb-4 font-bold italic">Terminal Status: Online // Metropolia Smart IoT</p>
-        <p class="text-[10px] text-slate-700 uppercase tracking-widest">Sami Karesniemi // IT Engineering // 2026</p>
-    </footer>
-
-</body>
-</html>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-800 border border-slate-800">
+            <div class="bg-slate-950 p-8">
+                <h3 class="text-blue-500 code-font text-xs font-bold mb-6">[ 01 AI_ORCHESTRATION ]</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex justify-between"><span class="text-slate-400">LLM Models</span> <span class="text-slate-200">Gemini 1.5, GPT-4o</span></li>
+                    <li class="flex justify-between"><span class="text-slate-400">Frameworks</span> <span class="text-slate-200">LangChain, RAG</span></li>
+                    <li class="flex justify-between"><span class="text-slate-400">Workflows</span> <span class="text-slate-200">Agentic Loops</span></li>
+                </ul>
+            </div>
+            <div class="bg-slate-950 p-8">
+                <h3 class="text-purple-500 code-font text-xs font-bold mb-6">[ 02 EDGE_COMPUTING ]</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex justify-between"><span class="text-slate-400">Languages</span> <span class="text-slate-200">Python, C++, SQL</span></li>
+                    <li class="flex justify-between"><span class="text-slate-400">Hardware</span> <span class="text-slate-200">ESP32, Raspberry Pi</span></li>
+                    <li class="flex justify-between"><span class="text-slate-400">Protocols</span> <span class="text-slate-200">MQTT, REST</span></li>
+                </ul>
+            </div>
+            <div class="bg-slate-950 p-8">
+                <h3 class="text-green-500 code-font text-xs font-bold mb-6">[ 03 DATA_OPERATIONS ]</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="
