@@ -3,291 +3,978 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Karesniemi | AI Systems Architect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;700&display=swap');
-    body { background-color: #020617; color: #f8fafc; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-    .code-font { font-family: 'Fira Code', monospace; }
+    <title>AI Engineer Portfolio | Machine Learning Projects</title>
+    <meta name="description" content="Portfolio showcasing cutting-edge AI and machine learning projects">
     
-    /* Terminal Card Styling */
-    .terminal-card { 
-        background: #0f172a; 
-        border-left: 4px solid #1e293b; 
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .terminal-card:hover { 
-        border-left-color: #3b82f6; 
-        background: rgba(30, 41, 59, 0.5); 
-        transform: translateX(8px);
-    }
-
-    /* Status Dot */
-    .status-dot { height: 8px; width: 8px; background-color: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #22c55e; animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-    /* --- NEW DENSE MASONRY GRID --- */
-    .gallery-masonry {
-        column-count: 2; /* Mobile: 2 columns so they are small */
-        column-gap: 1rem;
-    }
-    @media (min-width: 640px) {
-        .gallery-masonry { column-count: 3; }
-    }
-    @media (min-width: 1024px) {
-        .gallery-masonry { column-count: 4; }
-    }
-    @media (min-width: 1280px) {
-        .gallery-masonry { column-count: 5; } /* Desktop: 5 columns = small thumbnails */
-    }
-
-    .gallery-item {
-        break-inside: avoid;
-        margin-bottom: 1rem;
-        border-radius: 0.5rem;
-        border: 1px solid #1e293b;
-        background: #0f172a;
-        transition: all 0.2s ease;
-        position: relative;
-        overflow: hidden;
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     
-    .gallery-item:hover {
-        transform: translateY(-4px); /* Subtle lift */
-        border-color: #3b82f6;
-        box-shadow: 0 4px 20px -5px rgba(59, 130, 246, 0.4);
-        z-index: 10;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: auto; /* Maintains Aspect Ratio */
-        display: block;
-    }
-
-    /* Profile Glitch Border */
-    .profile-container {
-        position: relative;
-        padding: 4px;
-        background: linear-gradient(45deg, #3b82f6, #a855f7, #ef4444);
-        border-radius: 50%;
-    }
-</style>
-</head>
-<body class="selection:bg-blue-500/30">
-
-    <nav class="bg-slate-950/90 backdrop-blur-xl border-b border-slate-800 fixed w-full top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="status-dot"></div>
-                <a href="index.html" class="code-font font-bold text-lg tracking-tighter uppercase group">
-                    SAMI.KARESNIEMI <span class="text-blue-500 group-hover:text-white transition">_root</span>
-                </a>
-            </div>
-            <div class="hidden md:flex gap-10 text-[10px] uppercase font-bold tracking-[0.2em] text-slate-400">
-                <a href="index.html" class="hover:text-blue-400 transition">Resume</a>
-                <a href="#stack" class="hover:text-blue-400 transition">Stack</a>
-                <a href="#projects" class="hover:text-blue-400 transition">AI_Work</a>
-                <a href="#gallery" class="text-white border-b border-blue-500 pb-1">Gen_Gallery</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col lg:flex-row items-center gap-16">
-            <div class="flex-1 text-center lg:text-left">
-                <h1 class="text-6xl lg:text-7xl font-bold mb-8 tracking-tighter leading-none">
-                    Neuro-Symbolic <br><span class="text-blue-500 italic">Orchestration.</span>
-                </h1>
-                <p class="text-slate-400 text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10">
-                    Building the "Logic Layer" for Enterprise AI. From **High-Frequency Trading Bots** to **Air-Gapped Logistics RAG** systems. Powered by Gemini 3.0 and Local Llama 4.
-                </p>
-                <div class="flex justify-center lg:justify-start gap-4">
-                    <a href="mailto:sami.karesniemi@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-sm font-bold text-xs uppercase transition-all">Deploy Agent</a>
-                    <a href="index.html" class="border border-slate-700 hover:border-slate-400 px-8 py-4 rounded-sm font-bold text-xs uppercase transition-all">View Resume</a>
-                </div>
-            </div>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #0088ff;
+            --accent: #ff0088;
+            --bg-dark: #0a0a0f;
+            --bg-darker: #050508;
+            --text: #e8e8f0;
+            --text-dim: #9090a8;
+            --grid: rgba(0, 255, 136, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Animated Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Gradient Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary), transparent);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--secondary), transparent);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: -7s;
+        }
+        
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--accent), transparent);
+            top: 50%;
+            left: 50%;
+            animation-delay: -14s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+        
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header/Nav */
+        header {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+        }
+        
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+        }
+        
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -3px;
+            animation: slideUp 0.8s ease-out 0.4s backwards;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            animation: slideUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.8s backwards;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Section Headers */
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+        }
+        
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+        
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .project-link:hover {
+            color: var(--primary);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            border-color: var(--primary);
+        }
+        
+        .skill-category h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 0.6rem 0;
+            color: var(--text-dim);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            min-width: 200px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .contact-method:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-dim);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
             
-            <div class="flex-none relative">
-                <div class="relative z-10 flex flex-col items-center">
-                    <div class="profile-container w-48 h-48 mb-6 shadow-2xl shadow-blue-500/20">
-                        <img src="ai-images/profile.jpg" alt="Sami Karesniemi" class="w-full h-full object-cover rounded-full border-4 border-slate-900">
-                    </div>
-                    
-                    <div class="bg-slate-900 border border-slate-800 p-6 rounded code-font text-[11px] shadow-2xl w-80">
-                        <p class="text-blue-500">// Inference Status: 2026</p>
-                        <p class="mt-2"><span class="text-purple-400">active_models:</span> [</p>
-                        <p class="pl-4 text-green-400">"GPT-5.2_Orion",</p>
-                        <p class="pl-4 text-green-400">"Gemini-3_Ultra",</p>
-                        <p class="pl-4 text-green-400">"Kling_AI_Video"</p>
-                        <p class="">],</p>
-                        <p class="mt-2"><span class="text-purple-400">local_runtime:</span> {</p>
-                        <p class="pl-4 text-yellow-500">engine: "Ollama/Llama-4",</p>
-                        <p class="pl-4 text-yellow-500">security: "Air-Gapped"</p>
-                        <p class="">}</p>
-                    </div>
-                </div>
-                <div class="absolute top-0 right-0 w-full h-full bg-blue-500/10 blur-[100px] -z-10"></div>
-            </div>
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                text-align: center;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SAMI.KARESNIEMI</div>
+                <ul class="nav-links">
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-
-    <section id="stack" class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-900">
-        <div class="mb-12">
-            <h2 class="text-xs font-bold text-blue-500 uppercase tracking-[0.5em] mb-4">Core Competencies</h2>
-            <p class="text-3xl font-bold tracking-tight">Technical Stack 2.0</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-800 border border-slate-800">
-            <div class="bg-slate-950 p-8">
-                <h3 class="text-blue-500 code-font text-xs font-bold mb-6">[ FRONTIER_API ]</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between"><span class="text-slate-400">GPT-5.2 Orion</span> <span class="text-slate-200">Reasoning</span></li>
-                    <li class="flex justify-between"><span class="text-slate-400">Gemini 3.0</span> <span class="text-slate-200">Multimodal</span></li>
-                    <li class="flex justify-between"><span class="text-slate-400">AI Studio</span> <span class="text-slate-200">Prototyping</span></li>
-                </ul>
-            </div>
-            <div class="bg-slate-950 p-8">
-                <h3 class="text-purple-500 code-font text-xs font-bold mb-6">[ LOCAL_EDGE ]</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between"><span class="text-slate-400">Llama 4</span> <span class="text-slate-200">Local Inference</span></li>
-                    <li class="flex justify-between"><span class="text-slate-400">Python 3.12</span> <span class="text-slate-200">Scripting</span></li>
-                    <li class="flex justify-between"><span class="text-slate-400">ESP32 / MQTT</span> <span class="text-slate-200">IoT Control</span></li>
-                </ul>
-            </div>
-            <div class="bg-slate-950 p-8">
-                <h3 class="text-green-500 code-font text-xs font-bold mb-6">[ CREATIVE_GEN ]</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between"><span class="text-slate-400">Kling AI</span> <span class="text-slate-200">Video-Gen</span></li>
-                    <li class="flex justify-between"><span class="text-slate-400">Midjourney v7</span> <span class="text-slate-200">Visuals</span></li>
-                    <li class="flex justify-between"><span class="text-slate-400">Matplotlib</span> <span class="text-slate-200">Data Vis</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-900">
-        <h2 class="text-xs font-bold text-blue-500 uppercase tracking-[0.5em] mb-12">Showcase // Best AI Work</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="terminal-card p-10">
-                <div class="flex justify-between mb-6">
-                    <i class="fas fa-chart-line text-2xl text-blue-400"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">SCIKIT_LEARN // PYTHON</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Neuro-Symbolic Trading Engine</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    A hybrid trading system combining **Random Forest** probability models with symbolic logic gates. The backend handles live `yfinance` data streams, while the frontend dashboard (Streamlit) provides real-time PnL visualization.
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag">🤖 AI Engineer & ML Researcher</span>
+                <h1>Building the <span class="gradient-text">Future</span> with Artificial Intelligence</h1>
+                <p class="hero-description">
+                    Specialized in deep learning, computer vision, and NLP. Creating intelligent systems that solve real-world problems through cutting-edge AI technologies.
                 </p>
-                <div class="flex gap-2 text-[9px] uppercase font-bold text-slate-500">
-                    <span>#AlgorithmicTrading</span><span>#Streamlit</span><span>#DataScience</span>
-                </div>
-            </div>
-            <div class="terminal-card p-10">
-                <div class="flex justify-between mb-6">
-                    <i class="fas fa-truck-fast text-2xl text-purple-400"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">GEMINI_STUDIO // RAG</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Logistics OS: Contextual Routing</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Leveraging 15+ years of operational data. Using Gemini Pro's long-context window to ingest entire driver handbooks and historical route data to create a **Retrieval-Augmented Generation** assistant for "last-mile" delivery.
-                </p>
-                <div class="flex gap-2 text-[9px] uppercase font-bold text-slate-500">
-                    <span>#GoogleAIStudio</span><span>#PromptEngineering</span><span>#IndustrialAI</span>
-                </div>
-            </div>
-            <div class="terminal-card p-10">
-                <div class="flex justify-between mb-6">
-                    <i class="fas fa-brain text-2xl text-green-400"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">MATPLOTLIB // EDUCATION</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Explainable AI: Transformer Vis</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    A mathematically rigorous Python visualization suite designed for ultrawide displays. It renders the internal flow of an LLM—from Tokenization to Embedding Vectors and Attention Heads—proving deep architectural understanding.
-                </p>
-                <div class="flex gap-2 text-[9px] uppercase font-bold text-slate-500">
-                    <span>#XAI</span><span>#NeuralNetworks</span><span>#PythonVis</span>
-                </div>
-            </div>
-            <div class="terminal-card p-10">
-                <div class="flex justify-between mb-6">
-                    <i class="fas fa-video text-2xl text-yellow-400"></i>
-                    <span class="code-font text-[10px] text-slate-500 tracking-widest">KLING_AI // VIDEO</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Autonomous Media Pipelines</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Orchestrating **Kling AI** for automated shot-generation based on MVP74 cinematography standards. This pipeline translates text scripts into hyper-realistic video placeholders for rapid pre-visualization.
-                </p>
-                <div class="flex gap-2 text-[9px] uppercase font-bold text-slate-500">
-                    <span>#GenerativeVideo</span><span>#CreativeOps</span><span>#WorkflowAuto</span>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
         </div>
     </section>
-
-<section id="gallery" class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-900">
-        <h2 class="text-xs font-bold text-blue-500 uppercase tracking-[0.5em] mb-12 flex items-center gap-4">
-            <span class="w-8 h-px bg-blue-500"></span> 
-            Generative Output Log
-        </h2>
-        
-        <div class="gallery-masonry">
+    
+    <!-- Stats Section -->
+    <section>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">AI Projects</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Lines of Code</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Accuracy Achieved</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Featured Work</div>
+                <h2>AI Projects Portfolio</h2>
+                <p class="section-description">
+                    A showcase of machine learning and AI projects spanning computer vision, NLP, and deep learning applications.
+                </p>
+            </div>
             
-            <div class="gallery-item group">
-                <img src="ai-images/1.jpg" alt="Posti Truck">
-                <div class="p-4 bg-slate-950/80 absolute bottom-0 w-full translate-y-full group-hover:translate-y-0 transition duration-300">
-                    <p class="code-font text-[10px] text-blue-400">PROMPT: Stormy Logistics</p>
+            <div class="projects-grid">
+                <!-- Project 1: VULCAN CORE SENTINEL -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">🛡️</div>
+                    <h3>VULCAN CORE SENTINEL</h3>
+                    <p class="project-description">
+                        Autonomous system monitoring and anomaly detection.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Anomaly Detection</span>
+                        <span class="tech-tag">System Monitoring</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/vulcan-core-sentinel" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Documentation
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2: SentinelVulnerabilityScanner -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">🔒</div>
+                    <h3>SentinelVulnerabilityScanner</h3>
+                    <p class="project-description">
+                        AI-driven security auditing and threat analysis.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cybersecurity</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Threat Intelligence</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/sentinel-vulnerability-scanner" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Security Report
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3: CryptoPattern AI -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">📈</div>
+                    <h3>CryptoPattern AI</h3>
+                    <p class="project-description">
+                        Predictive financial modeling using advanced pattern recognition.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">Pattern Recognition</span>
+                        <span class="tech-tag">FinTech</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/cryptopattern-ai" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Live Analysis
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Työbotti AI -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">💼</div>
+                    <h3>Työbotti AI</h3>
+                    <p class="project-description">
+                        Intelligent job matching and NLP-based resume parsing.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Gemini API</span>
+                        <span class="tech-tag">React</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/tyobotti-ai" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Try Demo
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Jeesus HVAC -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">🌡️</div>
+                    <h3>Jeesus HVAC</h3>
+                    <p class="project-description">
+                        IoT-based predictive maintenance and climate optimization.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">IoT</span>
+                        <span class="tech-tag">Predictive ML</span>
+                        <span class="tech-tag">Time Series</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/jeesus-hvac" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Dashboard
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 6: PassPhoto Pro -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">📸</div>
+                    <h3>PassPhoto Pro</h3>
+                    <p class="project-description">
+                        Computer vision system for biometric image formatting.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">OpenCV</span>
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Face Detection</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/passphoto-pro" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Try Online
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 7: Over-Engineered AI Calculator -->
+                <div class="project-card fade-in">
+                    <div class="project-icon">🧮</div>
+                    <h3>Over-Engineered AI Calculator</h3>
+                    <p class="project-description">
+                        A complex multi-agent system for solving advanced logic.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Multi-Agent</span>
+                        <span class="tech-tag">Gemini API</span>
+                        <span class="tech-tag">LangChain</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/overengineered-ai-calculator" class="project-link" target="_blank">
+                            <span>→</span> View Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <span>→</span> Try It
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/2.jpg" alt="Väinämöinen">
-                <div class="p-4 bg-slate-950/80 absolute bottom-0 w-full translate-y-full group-hover:translate-y-0 transition duration-300">
-                    <p class="code-font text-[10px] text-blue-400">PROMPT: Kalevala Drift</p>
-                </div>
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/3.jpg" alt="Renaissance Turbo">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/4.jpg" alt="Galileo E36">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/5.jpg" alt="Saab Racing">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/6.jpg" alt="Arctic Explorer">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/7.jpg" alt="Astronaut">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/8.jpg" alt="Generative Art">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/9.jpg" alt="Generative Art">
-            </div>
-
-            <div class="gallery-item group">
-                <img src="ai-images/10.jpg" alt="Generative Art">
-            </div>
-
         </div>
-        <p class="text-center text-slate-600 text-[10px] mt-12 uppercase tracking-widest">Rendered via Midjourney v6 & DALL-E 3</p>
     </section>
-
-    <footer class="py-20 border-t border-slate-900 text-center">
-        <a href="index.html" class="inline-block border border-blue-500/30 px-6 py-2 text-[10px] font-bold uppercase tracking-widest text-blue-400 hover:bg-blue-500 hover:text-white transition-all mb-8">
-            Return to Resume
-        </a>
-        <p class="text-[10px] text-slate-700 uppercase tracking-widest">Sami Karesniemi // 2026 // Metropolia IT</p>
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Expertise</div>
+                <h2>Technical Skills</h2>
+                <p class="section-description">
+                    Comprehensive toolkit for building AI/ML solutions from research to production deployment.
+                </p>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category fade-in">
+                    <h3>Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>Deep Learning & Neural Networks</li>
+                        <li>Computer Vision (CNNs, YOLO, R-CNN)</li>
+                        <li>Natural Language Processing</li>
+                        <li>Reinforcement Learning</li>
+                        <li>Generative AI (GANs, VAEs)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Frameworks & Libraries</h3>
+                    <ul class="skill-list">
+                        <li>PyTorch & TensorFlow</li>
+                        <li>Keras & Scikit-learn</li>
+                        <li>Hugging Face Transformers</li>
+                        <li>LangChain & LlamaIndex</li>
+                        <li>OpenCV & NLTK</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Programming</h3>
+                    <ul class="skill-list">
+                        <li>Python (Advanced)</li>
+                        <li>C++ & CUDA</li>
+                        <li>JavaScript/TypeScript</li>
+                        <li>SQL & NoSQL</li>
+                        <li>Git & Docker</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Cloud & MLOps</h3>
+                    <ul class="skill-list">
+                        <li>AWS SageMaker & Lambda</li>
+                        <li>Google Cloud AI Platform</li>
+                        <li>MLflow & Weights & Biases</li>
+                        <li>Kubernetes & Airflow</li>
+                        <li>CI/CD for ML Pipelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Get in Touch</div>
+                <h2>Let's Collaborate</h2>
+                <p class="section-description">
+                    Open to exciting AI projects, research collaborations, and innovative opportunities.
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-methods">
+                    <a href="mailto:your.email@example.com" class="contact-method fade-in">
+                        <div class="contact-icon">📧</div>
+                        <div>Email</div>
+                    </a>
+                    <a href="https://github.com/yourusername" class="contact-method fade-in" target="_blank">
+                        <div class="contact-icon">💻</div>
+                        <div>GitHub</div>
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" class="contact-method fade-in" target="_blank">
+                        <div class="contact-icon">💼</div>
+                        <div>LinkedIn</div>
+                    </a>
+                    <a href="https://twitter.com/yourhandle" class="contact-method fade-in" target="_blank">
+                        <div class="contact-icon">🐦</div>
+                        <div>Twitter</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 AI Portfolio. Built with passion for artificial intelligence.</p>
+        </div>
     </footer>
-
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        // Add stagger delay to project cards
+        document.querySelectorAll('.project-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+        
+        // Add parallax effect to orbs on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
