@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Karesniemi | Artificial Intelligence Architect</title>
+    <title>Sami Karesniemi | AI Systems Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,7 +12,7 @@
         :root {
             --neon-cyan: #06b6d4;
             --neon-purple: #a855f7;
-            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-bg: rgba(15, 23, 42, 0.85); /* Slightly darker for better readability */
             --glass-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -46,67 +46,53 @@
             position: relative;
         }
 
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        .glass-card:hover::before {
-            transform: translateX(100%);
-        }
-
         .glass-card:hover {
             border-color: var(--neon-cyan);
             box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
             transform: translateY(-5px);
         }
 
-        /* Tech Badges */
         .tech-pill {
             background: rgba(6, 182, 212, 0.1);
             color: #22d3ee;
             border: 1px solid rgba(6, 182, 212, 0.2);
         }
-
-        /* Glitch Text Effect */
-        .glitch-text {
-            position: relative;
-        }
-        .glitch-text::after {
-            content: '_';
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body class="selection:bg-cyan-500/30">
 
-    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[90%] max-w-5xl z-50">
-        <div class="glass-panel rounded-full px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
-                <span class="font-mono font-bold tracking-tighter text-sm">
-                    SAMI.AI <span class="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">_v2.0</span>
-                </span>
-            </a>
+    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <div class="glass-panel rounded-2xl px-6 py-4 w-full max-w-5xl relative">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
+                    <span class="font-mono font-bold tracking-tighter text-sm">
+                        SAMI.AI <span class="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">_v2.0</span>
+                    </span>
+                </a>
 
-            <div class="hidden md:flex items-center gap-8 font-mono text-xs font-bold tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-cyan-400 transition-colors">RESUME</a>
-                <a href="#stack" class="hover:text-cyan-400 transition-colors">STACK</a>
-                <a href="#projects" class="hover:text-cyan-400 transition-colors">AI_WORK</a>
-                <a href="#gallery" class="px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500 hover:text-black transition-all">GEN_GALLERY</a>
+                <div class="hidden md:flex items-center gap-8 font-mono text-xs font-bold tracking-widest text-slate-400">
+                    <a href="index.html" class="hover:text-cyan-400 transition-colors">RESUME</a>
+                    <a href="#stack" class="hover:text-cyan-400 transition-colors">STACK</a>
+                    <a href="#projects" class="hover:text-cyan-400 transition-colors">AI_WORK</a>
+                    <a href="#gallery" class="px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500 hover:text-black transition-all">GEN_GALLERY</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-cyan-400 focus:outline-none">
+                    <i class="fas fa-bars text-xl transition-all duration-300"></i>
+                </button>
             </div>
 
-            <i class="fas fa-bars md:hidden text-slate-400"></i>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-slate-700/50 flex-col gap-4 font-mono text-sm">
+                <a href="index.html" class="block py-2 text-slate-300 hover:text-cyan-400">RESUME</a>
+                <a href="#stack" class="block py-2 text-slate-300 hover:text-cyan-400">STACK</a>
+                <a href="#projects" class="block py-2 text-slate-300 hover:text-cyan-400">AI_WORK</a>
+                <a href="#gallery" class="block py-2 text-slate-300 hover:text-cyan-400">GEN_GALLERY</a>
+            </div>
         </div>
     </nav>
 
-    <header class="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+    <header class="min-h-screen flex items-center justify-center px-6 pt-24 relative overflow-hidden">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px] -z-10"></div>
         <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[128px] -z-10"></div>
 
@@ -122,7 +108,7 @@
                 </h1>
                 
                 <p class="text-slate-400 text-lg max-w-xl leading-relaxed">
-                    I build the logic layer for enterprise intelligence. Specializing in 
+                    Building the logic layer for enterprise intelligence. Specializing in 
                     <strong class="text-white">Neuro-Symbolic Systems</strong>, 
                     <strong class="text-white">Cybersecurity AI</strong>, and 
                     <strong class="text-white">Generative Agents</strong>.
@@ -219,7 +205,7 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
                 
                 <div class="glass-card rounded-xl p-8 group">
                     <div class="flex justify-between items-start mb-6">
@@ -264,7 +250,7 @@
                     </div>
                     <h4 class="text-2xl font-bold mb-3 group-hover:text-green-400 transition-colors">CryptoPattern AI</h4>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        High-frequency financial data analysis using LSTM neural networks. Detects non-linear market patterns across multiple timeframes via WebSocket streams.
+                        High-frequency financial data analysis using LSTM neural networks. Detects non-linear market patterns across multiple timeframes.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">TensorFlow</span>
@@ -272,7 +258,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl p-8 group">
+                 <div class="glass-card rounded-xl p-8 group">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
                             <i class="fas fa-users-viewfinder text-yellow-500 text-xl"></i>
@@ -281,48 +267,13 @@
                     </div>
                     <h4 class="text-2xl font-bold mb-3 group-hover:text-yellow-400 transition-colors">Työbotti AI Job Matcher</h4>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Intelligent recruitment system using semantic search vectors. Parses resumes and job descriptions to match candidates based on context and soft skills.
+                        Intelligent recruitment system using semantic search vectors. Parses resumes and job descriptions to match candidates based on context.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">NLP</span>
                         <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">Semantic Search</span>
                     </div>
                 </div>
-
-                <div class="glass-card rounded-xl p-8 group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center border border-orange-500/20">
-                            <i class="fas fa-temperature-arrow-down text-orange-500 text-xl"></i>
-                        </div>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3 group-hover:text-orange-400 transition-colors">Jeesus HVAC (Heavenly Climate)</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Industrial IoT solution for predictive maintenance. Optimizing energy consumption in climate control systems using sensor data streams.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">IoT</span>
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">C++</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-xl p-8 group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
-                            <i class="fas fa-code text-cyan-500 text-xl"></i>
-                        </div>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">Gemini AI Portfolio Pro</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        A meta-tool leveraging generative models to dynamically architect and deploy personalized portfolio websites (like this one) based on simple prompts.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">Generative UI</span>
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase">React</span>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -338,33 +289,13 @@
                 <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
                     <img src="ai-images/1.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
                     <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-2 bg-black/80 translate-y-full group-hover:translate-y-0 transition duration-300">
-                        <p class="font-mono text-[10px] text-cyan-400">PROMPT: Stormy Logistics</p>
-                    </div>
                 </div>
-                
                 <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
                     <img src="ai-images/2.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
                     <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
                 </div>
-
-                <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
+                 <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
                     <img src="ai-images/3.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-
-                <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
-                    <img src="ai-images/4.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-
-                <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
-                    <img src="ai-images/5.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-
-                <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
-                    <img src="ai-images/6.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
                     <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
                 </div>
             </div>
@@ -377,7 +308,6 @@
 
     <footer class="py-12 border-t border-slate-900 text-center relative overflow-hidden">
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-[100px]"></div>
-        
         <div class="relative z-10">
             <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded border border-slate-800 bg-slate-900/50 hover:border-cyan-500/50 transition-all font-mono text-xs font-bold text-slate-400 hover:text-cyan-400 mb-8">
                 <i class="fas fa-terminal"></i> RETURN_TO_ROOT
@@ -389,5 +319,35 @@
         </div>
     </footer>
 
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            
+            // Toggle Icon class
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close menu when clicking a link
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
 </body>
 </html>
