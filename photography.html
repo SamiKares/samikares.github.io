@@ -106,9 +106,8 @@
         </div>
     </div>
 
-    <script>
+<script>
         // Määritellään kuvat ja niille kategoriat
-        // Lisää kategoria 'snow', 'skate', 'people' tai 'artsy' kunkin kuvan kohdalle
         const images = [
                 { src: "5_frames_per_sec__by_absoli_d20p9ui.jpg", category: "skate" },
                 { src: "eeronopabänäflip.jpg", category: "skate" },
@@ -244,36 +243,34 @@
                 { src: "vitunmiz.jpg", category: "people" },
                 { src: "vitunrinnehuorat.jpg", category: "people" },
                 { src: "volvo__by_absoli_d20p6s2.jpg", category: "people" },
-                { src: "1nissineistuskelee.jpg", category: "arts" },
-                { src: "chervoletmainos.jpg", category: "arts" },
-                { src: "chilling_by_absoli_d21xi3l.jpg", category: "arts" },
-                { src: "eagles_nest__by_absoli_d1zunrg.jpg", category: "arts" },
-                { src: "going_fast__by_absoli_d22pnw1.jpg", category: "arts" },
-                { src: "goldengate.jpg", category: "arts" },
-                { src: "huorakatuu.jpg", category: "arts" },
-                { src: "jalkaikkunassa7.jpg", category: "arts" },
-                { src: "jokivuoretmaisemaa.jpg", category: "arts" },
-                { src: "maisemahomo.jpg", category: "arts" },
-                { src: "sanfransisco.jpg", category: "arts" },
-                { src: "spinning_by_absoli_dp1ima.jpg", category: "arts" },
-                { src: "three_dudes_and_sunset__by_absoli_d1zmw8e.jpg", category: "arts" },
-                { src: "venehippi.jpg", category: "arts" },
-                { src: "vilikivelmagoilee.jpg", category: "arts" },
-                { src: "wääää.jpg", category: "arts" }
-
+                { src: "chervoletmainos.jpg", category: "artsy" },
+                { src: "chilling_by_absoli_d21xi3l.jpg", category: "artsy" },
+                { src: "going_fast__by_absoli_d22pnw1.jpg", category: "artsy" },
+                { src: "goldengate.jpg", category: "artsy" },
+                { src: "huorakatuu.jpg", category: "artsy" },
+                { src: "jalkaikkunassa7.jpg", category: "artsy" },
+                { src: "jokivuoretmaisemaa.jpg", category: "artsy" },
+                { src: "maisemahomo.jpg", category: "artsy" },
+                { src: "sanfransisco.jpg", category: "artsy" },
+                { src: "spinning_by_absoli_dp1ima.jpg", category: "artsy" },
+                { src: "three_dudes_and_sunset__by_absoli_d1zmw8e.jpg", category: "artsy" },
+                { src: "venehippi.jpg", category: "artsy" },
+                { src: "vilikivelmagoilee.jpg", category: "artsy" },
+                { src: "wääää.jpg", category: "artsy" }
         ];
 
         const grid = document.getElementById('gallery-grid');
         
         // Luodaan galleria
         images.forEach(imgObj => {
-            const cleanName = imgObj.file.replace('.jpg', '').replace(/_/g, ' ');
+            // Käytetään imgObj.src ja imgObj.category
+            const cleanName = imgObj.src.replace('.jpg', '').replace(/_/g, ' ');
             
             const item = `
-                <div class="gallery-item group cursor-pointer" data-category="${imgObj.cat}" onclick="openLightbox('portfolio-images/${imgObj.file}', '${cleanName}')">
+                <div class="gallery-item group cursor-pointer" data-category="${imgObj.category}" onclick="openLightbox('portfolio-images/${imgObj.src}', '${cleanName}')">
                     <div class="frame-border aspect-[5/4] bg-subtle border border-gray-800 flex items-center justify-center p-8 transition-colors duration-500 group-hover:bg-[#151515] relative overflow-hidden">
                         <div class="img-container w-full h-full flex items-center justify-center">
-                            <img src="portfolio-images/${imgObj.file}" alt="${cleanName}" loading="lazy" class="transition-transform duration-700 ease-out group-hover:scale-105">
+                            <img src="portfolio-images/${imgObj.src}" alt="${cleanName}" loading="lazy" class="transition-transform duration-700 ease-out group-hover:scale-105">
                         </div>
                     </div>
                     <div class="mt-4 flex justify-between items-center opacity-60 group-hover:opacity-100 transition duration-500">
@@ -287,12 +284,11 @@
             grid.insertAdjacentHTML('beforeend', item);
         });
 
-        // Suodatustoiminto
+        // Suodatustoiminto (sama kuin ennen)
         function filterGallery(category) {
             const items = document.querySelectorAll('.gallery-item');
             const buttons = document.querySelectorAll('.filter-btn');
 
-            // Päivitä nappien tyylit
             buttons.forEach(btn => {
                 btn.classList.remove('text-white', 'border-b', 'border-white', 'pb-1');
                 btn.classList.add('text-gray-500');
@@ -302,7 +298,6 @@
                 }
             });
 
-            // Suodata elementit
             items.forEach(item => {
                 if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
@@ -314,7 +309,6 @@
             });
         }
 
-        // Lightbox toiminnot
         const lb = document.getElementById('lightbox');
         const lbImg = document.getElementById('lightbox-img');
         const lbCap = document.getElementById('lightbox-caption');
