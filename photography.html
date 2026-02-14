@@ -95,7 +95,7 @@
     </header>
 
     <main class="max-w-[1400px] mx-auto px-6 pb-32">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" id="gallery-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12" id="gallery-grid">
             </div>
     </main>
 
@@ -281,7 +281,7 @@
             
             const item = `
                 <div class="gallery-item group cursor-pointer" data-category="${imgObj.category}" onclick="openLightbox('portfolio-images/${imgObj.src}', '${cleanName}')">
-                    <div class="frame-border aspect-[5/4] bg-subtle border border-gray-800 flex items-center justify-center p-8 transition-colors duration-500 group-hover:bg-[#151515] relative overflow-hidden">
+                    <div class="frame-border aspect-[5/4] bg-subtle border border-gray-800 flex items-center justify-center p-4 md:p-8 transition-colors duration-500 group-hover:bg-[#151515] relative overflow-hidden">
                         <div class="img-container w-full h-full flex items-center justify-center">
                             <img src="portfolio-images/${imgObj.src}" alt="${cleanName}" loading="lazy" class="transition-transform duration-700 ease-out group-hover:scale-105">
                         </div>
