@@ -1,407 +1,322 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LXJZXKF8ZV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-LXJZXKF8ZV');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LXJZXKF8ZV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LXJZXKF8ZV');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Karesniemi | AI Systems Architect</title>
+    <title>Sami Karesniemi | Cognitive Systems Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root {
-            --neon-cyan: #06b6d4;
-            --neon-purple: #a855f7;
-            --glass-bg: rgba(15, 23, 42, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-color: #050505;
+            --border-color: #1f1f22;
+            --text-main: #ededed;
+            --text-muted: #8a8f98;
         }
 
         body {
-            background-color: #030712;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            /* Subtle drafting grid background for technical feel */
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.15), transparent 40%),
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
-            color: #e2e8f0;
-            font-family: 'Space Grotesk', sans-serif;
+                linear-gradient(var(--border-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+            background-size: 100px 100px;
+            background-position: center top;
         }
 
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Glassmorphism Classes */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        /* Minimalist structural styling */
+        .layout-grid {
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            background-color: var(--bg-color); /* Hides grid lines inside content area */
         }
 
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
+        .border-line {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Hover animations for project rows */
+        .project-row {
+            transition: background-color 0.3s ease;
             position: relative;
         }
-
-        .glass-card:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
-            transform: translateY(-5px);
+        
+        .project-row::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background-color: #ededed;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: center;
         }
 
-        /* Special styling for Flagship projects */
-        .flagship-card {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.1);
-        }
-        .flagship-card:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
-            transform: translateY(-5px) scale(1.01);
+        .project-row:hover {
+            background-color: #0a0a0c;
         }
 
-        .tech-pill {
-            background: rgba(6, 182, 212, 0.1);
-            color: #22d3ee;
-            border: 1px solid rgba(6, 182, 212, 0.2);
+        .project-row:hover::before {
+            transform: scaleY(1);
+        }
+
+        .project-row:hover .project-arrow {
+            transform: translateX(5px) translateY(-5px);
+            color: #ededed;
+        }
+
+        /* Custom selection color */
+        ::selection {
+            background: #ededed;
+            color: #050505;
+        }
+
+        /* Pill tags */
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid #27272a;
+            color: #a1a1aa;
+            border-radius: 999px;
         }
     </style>
 </head>
-<body class="selection:bg-cyan-500/30">
+<body class="antialiased selection:bg-white selection:text-black">
 
-    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <div class="glass-panel rounded-2xl px-6 py-4 w-full max-w-5xl relative">
-            <div class="flex justify-between items-center">
-                <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></div>
-                    <span class="font-mono font-bold tracking-tighter text-sm">
-                        SAMI.AI <span class="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">_v2.0</span>
-                    </span>
-                </a>
-
-                <div class="hidden md:flex items-center gap-8 font-mono text-xs font-bold tracking-widest text-slate-400">
-                    <a href="index.html" class="hover:text-cyan-400 transition-colors">RESUME</a>
-                    <a href="#stack" class="hover:text-cyan-400 transition-colors">STACK</a>
-                    <a href="#projects" class="hover:text-cyan-400 transition-colors">AI_WORK</a>
-                    <a href="#gallery" class="px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500 hover:text-black transition-all">GEN_GALLERY</a>
-                </div>
-
-                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-cyan-400 focus:outline-none">
-                    <i class="fas fa-bars text-xl transition-all duration-300"></i>
-                </button>
-            </div>
-
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-slate-700/50 flex-col gap-4 font-mono text-sm">
-                <a href="index.html" class="block py-2 text-slate-300 hover:text-cyan-400">RESUME</a>
-                <a href="#stack" class="block py-2 text-slate-300 hover:text-cyan-400">STACK</a>
-                <a href="#projects" class="block py-2 text-slate-300 hover:text-cyan-400">AI_WORK</a>
-                <a href="#gallery" class="block py-2 text-slate-300 hover:text-cyan-400">GEN_GALLERY</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="min-h-screen flex items-center justify-center px-6 pt-24 relative overflow-hidden">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px] -z-10"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[128px] -z-10"></div>
-
-        <div class="max-w-6xl w-full grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-900/10 text-cyan-400 font-mono text-xs">
-                    <i class="fas fa-circle-notch fa-spin text-[10px]"></i> SYSTEM ONLINE: HELSINKI NODE
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
-                    Architecting <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Synthetic Cognition.</span>
-                </h1>
-                
-                <p class="text-slate-400 text-lg max-w-xl leading-relaxed">
-                    Building the logic layer for enterprise intelligence. Specializing in 
-                    <strong class="text-white">Neuro-Symbolic Systems</strong>, 
-                    <strong class="text-white">Cybersecurity AI</strong>, and 
-                    <strong class="text-white">Generative Agents</strong>.
-                </p>
-
-                <div class="flex gap-4 pt-4">
-                    <a href="#projects" class="px-8 py-4 bg-white text-black font-bold rounded hover:bg-cyan-500 hover:scale-105 transition-all duration-300">
-                        View Projects
-                    </a>
-                    <a href="mailto:sami.karesniemi@gmail.com" class="px-8 py-4 glass-panel rounded hover:text-cyan-400 transition-colors">
-                        Contact Protocol
-                    </a>
-                </div>
-            </div>
-
-            <div class="relative hidden lg:block">
-                <div class="glass-panel rounded-xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                    <div class="flex justify-between items-start mb-8 border-b border-white/5 pb-4">
-                        <div>
-                            <p class="text-xs text-slate-500 font-mono">CURRENT FOCUS</p>
-                            <p class="font-bold text-xl">JARVIS System</p>
-                        </div>
-                        <i class="fas fa-microchip text-4xl text-cyan-500/50"></i>
-                    </div>
-                    <div class="space-y-4 font-mono text-sm">
-                        <div class="flex justify-between">
-                            <span class="text-slate-400">Model_Backend</span>
-                            <span class="text-green-400">Gemma 3-27B</span>
-                        </div>
-                        <div class="w-full bg-slate-800 h-1 rounded overflow-hidden">
-                            <div class="bg-gradient-to-r from-green-400 to-cyan-400 w-[85%] h-full"></div>
-                        </div>
-                        <div class="flex justify-between mt-2">
-                            <span class="text-slate-400">Voice_Response</span>
-                            <span class="text-purple-400">Real-time TTS</span>
-                        </div>
-                        <div class="w-full bg-slate-800 h-1 rounded overflow-hidden">
-                            <div class="bg-gradient-to-r from-purple-400 to-pink-400 w-[92%] h-full"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section id="stack" class="py-24 px-6 relative">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center font-mono text-xs text-cyan-500 tracking-[0.5em] mb-4">CAPABILITIES</h2>
-            <h3 class="text-center text-3xl md:text-4xl font-bold mb-16">Technical Arsenal</h3>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-card p-8 rounded-2xl">
-                    <i class="fas fa-brain text-3xl text-purple-400 mb-6"></i>
-                    <h4 class="text-xl font-bold mb-4">Frontier Models</h4>
-                    <ul class="space-y-3 font-mono text-sm text-slate-400">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div> GPT-5.2 Orion (Reasoning)</li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div> Gemini 1.5 Pro (Context)</li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-purple-400 rounded-full"></div> Gemma 3-27B (Local)</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card p-8 rounded-2xl">
-                    <i class="fas fa-shield-halved text-3xl text-red-400 mb-6"></i>
-                    <h4 class="text-xl font-bold mb-4">Security & Ops</h4>
-                    <ul class="space-y-3 font-mono text-sm text-slate-400">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-red-400 rounded-full"></div> Python / PyTorch</li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-red-400 rounded-full"></div> CVE Threat Databases</li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-red-400 rounded-full"></div> Air-Gapped Local Llama</li>
-                    </ul>
-                </div>
-
-                <div class="glass-card p-8 rounded-2xl">
-                    <i class="fas fa-bolt text-3xl text-yellow-400 mb-6"></i>
-                    <h4 class="text-xl font-bold mb-4">Creative Synthesis</h4>
-                    <ul class="space-y-3 font-mono text-sm text-slate-400">
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div> React + Tailwind</li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div> Kling AI Video</li>
-                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-yellow-400 rounded-full"></div> Midjourney v7</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-24 px-6 bg-slate-950/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="font-mono text-xs text-cyan-500 tracking-[0.5em] mb-4">DEPLOYMENTS</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold">Showcase & Modules</h3>
-                </div>
-                <div class="hidden md:block font-mono text-xs text-slate-500 bg-slate-900 px-4 py-2 rounded border border-slate-800">
-                    Directory: /root/projects/public
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                
-                <div class="glass-card flagship-card rounded-xl p-8 group relative overflow-hidden h-full flex flex-col">
-                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-400/30 transition-all duration-500"></div>
-                    
-                    <div class="flex justify-between items-start mb-6 mt-2 relative z-10">
-                        <div class="w-14 h-14 rounded-full bg-cyan-900/40 flex items-center justify-center border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] transition-all">
-                            <i class="fas fa-atom fa-spin text-cyan-400 text-2xl" style="animation-duration: 4s;"></i>
-                        </div>
-                        <span class="px-3 py-1 bg-cyan-500/20 border border-cyan-500/30 rounded text-[10px] font-mono font-bold text-cyan-300">
-                            ONLINE • v3.0
-                        </span>
-                    </div>
-                    
-                    <h4 class="text-3xl font-bold mb-4 text-white group-hover:text-cyan-400 transition-colors">Complete JARVIS System</h4>
-                    
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
-                        A fully voice-activated AI assistant powered by local <strong>Gemma 3-27B</strong> via LM Studio. Features an Arc Reactor-inspired GUI, real-time WebSocket chat, and full OS-level task automation.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase bg-cyan-500/20 border-cyan-500/50 text-cyan-200">Gemma 3-27B</span>
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase bg-cyan-500/20 border-cyan-500/50 text-cyan-200">WebSockets</span>
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase bg-cyan-500/20 border-cyan-500/50 text-cyan-200">Speech-to-Text</span>
-                    </div>
-                </div>
-
-                <div class="glass-card flagship-card rounded-xl p-8 group relative overflow-hidden h-full flex flex-col">
-                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-all duration-500"></div>
-
-                    <div class="flex justify-between items-start mb-6 mt-2 relative z-10">
-                        <div class="w-14 h-14 rounded-lg bg-blue-900/40 flex items-center justify-center border border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-                            <i class="fas fa-file-shield text-blue-400 text-2xl"></i>
-                        </div>
-                        <span class="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded text-[10px] font-mono font-bold text-blue-300">
-                            LATEST BUILD
-                        </span>
-                    </div>
-                    
-                    <h4 class="text-3xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Sanitoija Data Engine</h4>
-                    
-                    <p class="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">
-                        Enterprise-grade data sanitization framework. Automatically detects PII across 14+ data types (IBAN, SSN) and applies 8 distinct obfuscation strategies (Faker, Jitter, Hashing).
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase bg-blue-500/20 border-blue-500/50 text-blue-200">Python Core</span>
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase bg-blue-500/20 border-blue-500/50 text-blue-200">Cryptography</span>
-                        <span class="tech-pill px-3 py-1 rounded text-[10px] font-mono uppercase bg-blue-500/20 border-blue-500/50 text-blue-200">CLI Tool</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <h3 class="font-mono text-xs text-slate-500 mb-6 uppercase tracking-widest border-b border-slate-800 pb-2">Operational Modules</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-
-                <div class="glass-card rounded-xl p-6 group">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-radar text-red-500 text-xl"></i>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 text-xs group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-red-400 transition-colors">VULCAN CORE SENTINEL</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                        Autonomous system monitoring and anomaly detection engine using Gemini 1.5 Pro to parse complex server logs.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">Python</span>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">Anomaly Detection</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-xl p-6 group">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-user-secret text-purple-500 text-xl"></i>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 text-xs group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">Sentinel Vulnerability Scanner</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                        Automated threat scoring pipeline. Aggregates CVE database lookups with custom penetration testing scripts.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">CyberSec</span>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">PenTesting</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-xl p-6 group">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-chart-line text-green-500 text-xl"></i>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 text-xs group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">CryptoPattern AI</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                        High-frequency financial data analysis using LSTM neural networks via WebSocket streams.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">TensorFlow</span>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">FinTech</span>
-                    </div>
-                </div>
-
-                 <div class="glass-card rounded-xl p-6 group">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-users-viewfinder text-yellow-500 text-xl"></i>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 text-xs group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-yellow-400 transition-colors">Työbotti AI Job Matcher</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                        Intelligent recruitment system using semantic search vectors. Parses resumes and matches candidates based on context.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">NLP</span>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">Semantic Search</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-xl p-6 group">
-                    <div class="flex justify-between items-start mb-4">
-                        <i class="fas fa-code text-cyan-500 text-xl"></i>
-                        <i class="fas fa-arrow-up-right-from-square text-slate-600 text-xs group-hover:text-white transition-colors"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition-colors">Gemini AI Portfolio Pro</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                        Generative tool to dynamically architect and deploy personalized portfolio websites based on user prompts.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">React</span>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-700 px-2 py-1 rounded">Generative UI</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-mono text-xs text-cyan-500 tracking-[0.5em] mb-12 flex items-center gap-4">
-                <span class="w-8 h-px bg-cyan-500"></span> 
-                GENERATIVE_OUTPUT_LOG
-            </h2>
-
-            <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-                <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
-                    <img src="ai-images/1.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-                <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
-                    <img src="ai-images/2.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-                 <div class="break-inside-avoid relative group rounded-lg overflow-hidden border border-slate-800">
-                    <img src="ai-images/3.jpg" alt="AI Art" class="w-full h-auto grayscale group-hover:grayscale-0 transition duration-500">
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <p class="font-mono text-[10px] text-slate-500">RENDER ENGINE: MIDJOURNEY v6 + DALL-E 3</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 border-t border-slate-900 text-center relative overflow-hidden">
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-cyan-500/5 rounded-full blur-[100px]"></div>
-        <div class="relative z-10">
-            <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded border border-slate-800 bg-slate-900/50 hover:border-cyan-500/50 transition-all font-mono text-xs font-bold text-slate-400 hover:text-cyan-400 mb-8">
-                <i class="fas fa-terminal"></i> RETURN_TO_ROOT
+    <div class="max-w-5xl mx-auto layout-grid min-h-screen relative">
+        
+        <nav class="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur-md border-line px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="font-mono text-xs font-medium tracking-widest uppercase">Sami.Karesniemi</span>
             </a>
-            <p class="font-mono text-[10px] text-slate-600 uppercase tracking-widest">
-                Sami Karesniemi // 2026 // Metropolia IT <br>
-                System Status: <span class="text-green-500">Optimal</span>
-            </p>
+
+            <div class="hidden md:flex gap-8 font-mono text-[10px] uppercase tracking-[0.15em] text-zinc-400">
+                <a href="#about" class="hover:text-white transition-colors">Resume</a>
+                <a href="#capabilities" class="hover:text-white transition-colors">Stack</a>
+                <a href="#deployments" class="hover:text-white transition-colors">Deployments</a>
+                <a href="#log" class="hover:text-white transition-colors">Output_Log</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-zinc-400 hover:text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-[#050505] border-line px-6 py-4 flex-col gap-4 font-mono text-xs uppercase tracking-widest text-zinc-400">
+            <a href="#about" class="block hover:text-white">Resume</a>
+            <a href="#capabilities" class="block hover:text-white">Stack</a>
+            <a href="#deployments" class="block hover:text-white">Deployments</a>
+            <a href="#log" class="block hover:text-white">Output_Log</a>
         </div>
-    </footer>
+
+        <header id="about" class="px-6 py-32 border-line relative overflow-hidden">
+            <p class="font-mono text-xs text-zinc-500 mb-8 uppercase tracking-[0.2em] flex items-center gap-4">
+                <span class="w-8 h-px bg-zinc-700"></span> Architect / Engineer
+            </p>
+            
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tighter leading-[1.1] mb-8 text-white">
+                Architecting <br>
+                <span class="text-zinc-600">Synthetic Logic.</span>
+            </h1>
+            
+            <p class="text-lg text-zinc-400 max-w-2xl font-light leading-relaxed mb-12">
+                Building the cognitive layer for enterprise systems. I specialize in designing autonomous <strong class="text-white font-medium">ReAct agents</strong>, neuro-symbolic architectures, and offensive security AI frameworks.
+            </p>
+
+            <div class="flex flex-wrap gap-4 font-mono text-xs">
+                <a href="#deployments" class="px-6 py-3 bg-white text-black font-medium hover:bg-zinc-200 transition-colors">
+                    [ VIEW_PROJECTS ]
+                </a>
+                <a href="mailto:sami.karesniemi@gmail.com" class="px-6 py-3 border border-zinc-800 text-zinc-300 hover:border-zinc-500 transition-colors">
+                    INITIATE_CONTACT
+                </a>
+            </div>
+        </header>
+
+        <section id="capabilities" class="border-line grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#1f1f22]">
+            
+            <div class="p-8">
+                <div class="font-mono text-[10px] text-zinc-500 mb-6 uppercase tracking-widest">01 / Frontier Models</div>
+                <h3 class="text-lg font-medium mb-4">Inference & Reasoning</h3>
+                <ul class="space-y-3 font-light text-zinc-400 text-sm">
+                    <li>Custom ReAct OODA Loops</li>
+                    <li>GPT-4o / Claude 3 Opus</li>
+                    <li>Local 16GB VRAM Deployments</li>
+                    <li>Gemma 3 & Llama-3 Arch</li>
+                </ul>
+            </div>
+
+            <div class="p-8">
+                <div class="font-mono text-[10px] text-zinc-500 mb-6 uppercase tracking-widest">02 / Engineering</div>
+                <h3 class="text-lg font-medium mb-4">Security & Operations</h3>
+                <ul class="space-y-3 font-light text-zinc-400 text-sm">
+                    <li>Python & PyTorch Ecosystem</li>
+                    <li>Automated Pentesting/Auditing</li>
+                    <li>Vulnerability DB Integrations</li>
+                    <li>Data Sanitization Pipelines</li>
+                </ul>
+            </div>
+
+            <div class="p-8">
+                <div class="font-mono text-[10px] text-zinc-500 mb-6 uppercase tracking-widest">03 / Interface</div>
+                <h3 class="text-lg font-medium mb-4">Creative Synthesis</h3>
+                <ul class="space-y-3 font-light text-zinc-400 text-sm">
+                    <li>React & Modern UI/UX</li>
+                    <li>Tailwind CSS Architecture</li>
+                    <li>WebSocket Data Streams</li>
+                    <li>Generative AI Workflows</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="deployments" class="border-line">
+            <div class="px-6 py-12 border-b border-[#1f1f22]">
+                <h2 class="text-3xl font-semibold tracking-tight">Active Deployments</h2>
+                <p class="font-mono text-xs text-zinc-500 mt-2">PRODUCTION & RESEARCH MODULES</p>
+            </div>
+
+            <div class="project-row px-6 py-12 border-b border-[#1f1f22] grid md:grid-cols-12 gap-8 items-start">
+                <div class="md:col-span-4">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                        <h3 class="text-xl font-medium">CELL-7 Agent</h3>
+                    </div>
+                    <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">Cybersecurity / Automation</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">ReAct Loop</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Local LLM</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <p class="text-zinc-400 font-light leading-relaxed">
+                        An enterprise-grade autonomous <strong class="text-zinc-200">ReAct (Reason + Act)</strong> cybersecurity agent. Operates on a custom OODA-loop to autonomously audit local environments, perform active multi-threaded subnet sweeps, and query live NIST NVD CVE databases. Generates professional compliance reports using local 16GB VRAM frontier models without human intervention.
+                    </p>
+                </div>
+                <div class="md:col-span-1 flex justify-end">
+                    <i class="fas fa-arrow-right text-zinc-600 project-arrow transition-all"></i>
+                </div>
+            </div>
+
+            <div class="project-row px-6 py-12 border-b border-[#1f1f22] grid md:grid-cols-12 gap-8 items-start">
+                <div class="md:col-span-4">
+                    <h3 class="text-xl font-medium mb-1">JARVIS System</h3>
+                    <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">Voice Assistant / System Ctrl</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Gemma 3-27B</span>
+                        <span class="tag">WebSockets</span>
+                        <span class="tag">TTS/STT</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <p class="text-zinc-400 font-light leading-relaxed">
+                        A fully voice-activated AI assistant powered by a local Gemma 3 model. Features an Arc Reactor-inspired graphic interface, real-time WebSocket communication, and full operating system-level task automation with speech synthesis.
+                    </p>
+                </div>
+                <div class="md:col-span-1 flex justify-end">
+                    <i class="fas fa-arrow-right text-zinc-600 project-arrow transition-all"></i>
+                </div>
+            </div>
+
+            <div class="project-row px-6 py-10 border-b border-[#1f1f22] grid md:grid-cols-12 gap-8 items-start">
+                <div class="md:col-span-4">
+                    <h3 class="text-lg font-medium mb-1">Sanitoija Data Engine</h3>
+                    <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">Data Privacy / Compliance</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Python Core</span>
+                        <span class="tag">Cryptography</span>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                        Enterprise-grade data sanitization framework. Automatically detects PII across 14+ data types (IBAN, SSN) and applies 8 distinct obfuscation strategies (Faker, Jitter, Hashing) to secure datasets before LLM training.
+                    </p>
+                </div>
+                <div class="md:col-span-1 flex justify-end">
+                    <i class="fas fa-arrow-right text-zinc-600 project-arrow transition-all"></i>
+                </div>
+            </div>
+
+            <div class="px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                
+                <div>
+                    <h4 class="font-medium mb-2 text-zinc-200">Vulcan Core Sentinel</h4>
+                    <p class="text-zinc-400 text-sm font-light mb-3">Autonomous system monitoring and anomaly detection engine using Gemini 1.5 Pro to parse complex server logs.</p>
+                    <div class="font-mono text-[9px] text-zinc-600 uppercase">Anomaly Detection · Server Ops</div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium mb-2 text-zinc-200">CryptoPattern AI</h4>
+                    <p class="text-zinc-400 text-sm font-light mb-3">High-frequency financial data analysis using LSTM neural networks operating via live WebSocket streams.</p>
+                    <div class="font-mono text-[9px] text-zinc-600 uppercase">FinTech · TensorFlow</div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium mb-2 text-zinc-200">Työbotti Job Matcher</h4>
+                    <p class="text-zinc-400 text-sm font-light mb-3">Intelligent recruitment system using semantic search vectors. Parses resumes and matches candidates contextually.</p>
+                    <div class="font-mono text-[9px] text-zinc-600 uppercase">NLP · Semantic Search</div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium mb-2 text-zinc-200">Gemini Portfolio Pro</h4>
+                    <p class="text-zinc-400 text-sm font-light mb-3">Generative tool to dynamically architect and deploy personalized portfolio websites based on user prompt parameters.</p>
+                    <div class="font-mono text-[9px] text-zinc-600 uppercase">React · Generative UI</div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="log" class="border-line px-6 py-16">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <h2 class="text-2xl font-semibold tracking-tight">Generative Output Log</h2>
+                <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mt-4 md:mt-0">Render Engine: Midjourney v6</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
+                <div class="aspect-square bg-zinc-900 border border-zinc-800 overflow-hidden group">
+                    <img src="ai-images/1.jpg" alt="AI Generated Architecture" class="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-zinc-800 overflow-hidden group">
+                    <img src="ai-images/2.jpg" alt="AI Generated Concept" class="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                </div>
+                <div class="aspect-square bg-zinc-900 border border-zinc-800 overflow-hidden group">
+                    <img src="ai-images/3.jpg" alt="AI Generated Concept" class="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <footer class="px-6 py-12 flex flex-col items-center justify-center text-center">
+            <a href="#" class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors mb-6 flex items-center gap-2">
+                <i class="fas fa-arrow-up"></i> Return to Header
+            </a>
+            <p class="text-sm font-light text-zinc-500">
+                Sami Karesniemi &copy; 2026
+            </p>
+            <p class="font-mono text-[10px] text-zinc-600 mt-2">
+                SYS_STATUS: <span class="text-white">OPERATIONAL</span>
+            </p>
+        </footer>
+
+    </div>
 
     <script>
         const btn = document.getElementById('mobile-menu-btn');
@@ -412,24 +327,19 @@
             menu.classList.toggle('hidden');
             menu.classList.toggle('flex');
             
-            // Toggle Icon class
             if (menu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.className = 'fas fa-bars';
             } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+                icon.className = 'fas fa-times';
             }
         });
 
-        // Close menu when clicking a link
         const mobileLinks = menu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
                 menu.classList.remove('flex');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.className = 'fas fa-bars';
             });
         });
     </script>
