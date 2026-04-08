@@ -49,10 +49,10 @@
             box-shadow: 0 12px 40px -12px rgba(0,0,0,0.08);
         }
 
+        /* Modern Nav Underline Animation */
         .nav-link {
             position: relative;
         }
-
         .nav-link::after {
             content: '';
             position: absolute;
@@ -60,11 +60,10 @@
             height: 1px;
             bottom: -2px;
             left: 0;
-            background-color: var(--text-main);
+            background-color: #1c1d20;
             transition: width 0.3s ease;
         }
-
-        .nav-link:hover::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
     </style>
@@ -73,14 +72,14 @@
 
     <nav class="fixed w-full top-0 z-50 bg-[#faf9f8]/80 backdrop-blur-lg border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-sm font-semibold tracking-wide text-gray-900">
+            <a href="index.html" class="text-sm font-semibold tracking-wide text-gray-900 uppercase">
                 SAMI KARESNIEMI
             </a>
 
             <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
-                <a href="#about" class="nav-link hover:text-gray-900">Profile</a>
-                <a href="#expertise" class="nav-link hover:text-gray-900">Expertise</a>
-                <a href="#projects" class="nav-link hover:text-gray-900">Projects</a>
+                <a href="index.html" class="nav-link hover:text-gray-900">Resume</a>
+                <a href="photography.html" class="nav-link hover:text-gray-900">Photography</a>
+                <a href="ai.html" class="nav-link text-gray-900 active">AI Portfolio</a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900">
@@ -89,9 +88,9 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-6 flex-col gap-6 text-sm font-medium text-gray-600">
-            <a href="#about" class="block hover:text-gray-900">Profile</a>
-            <a href="#expertise" class="block hover:text-gray-900">Expertise</a>
-            <a href="#projects" class="block hover:text-gray-900">Projects</a>
+            <a href="index.html" class="block hover:text-gray-900">Resume</a>
+            <a href="photography.html" class="block hover:text-gray-900">Photography</a>
+            <a href="ai.html" class="block text-gray-900 font-semibold">AI Portfolio</a>
         </div>
     </nav>
 
@@ -110,7 +109,7 @@
                 <a href="#projects" class="px-8 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors shadow-sm">
                     View Portfolio
                 </a>
-                <a href="mailto:sami.karesniemi@gmail.com" class="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full hover:border-gray-400 hover:bg-gray-50 transition-colors">
+                <a href="#contact" class="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full hover:border-gray-400 hover:bg-gray-50 transition-colors">
                     Get in Touch
                 </a>
             </div>
@@ -246,27 +245,49 @@
 
     </main>
 
-    <footer class="bg-white border-t border-gray-200 mt-12">
-        <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-sm text-gray-500 font-light">
-                &copy; 2026 Sami Karesniemi. All rights reserved.
-            </p>
+    <footer id="contact" class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-6xl mx-auto px-6 py-16">
             
-            <div class="flex gap-6">
-                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors">
-                    <i class="fab fa-linkedin text-xl"></i>
-                </a>
-                <a href="mailto:sami.karesniemi@gmail.com" class="text-gray-400 hover:text-gray-900 transition-colors">
-                    <i class="fas fa-envelope text-xl"></i>
+            <div class="mb-12">
+                <h2 class="text-2xl font-serif-custom font-semibold text-gray-900 mb-2">Let's Connect</h2>
+                <p class="text-gray-500 font-light">Available for engineering roles and consulting.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Phone</h4>
+                    <a href="tel:+358451051616" class="text-gray-900 font-medium hover:text-blue-600 transition-colors flex items-center gap-3">
+                        <i class="fas fa-phone text-gray-400"></i> +358 45 105 1616
+                    </a>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Email</h4>
+                    <a href="mailto:sami.karesniemi@gmail.com" class="text-gray-900 font-medium hover:text-blue-600 transition-colors flex items-center gap-3">
+                        <i class="fas fa-envelope text-gray-400"></i> sami.karesniemi@gmail.com
+                    </a>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Location</h4>
+                    <span class="text-gray-900 font-medium flex items-center gap-3">
+                        <i class="fas fa-map-marker-alt text-gray-400"></i> Helsinki, Finland
+                    </span>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Social Network</h4>
+                    <a href="https://linkedin.com/in/sami-karesniemi" target="_blank" rel="noopener noreferrer" class="text-gray-900 font-medium hover:text-blue-600 transition-colors flex items-center gap-3">
+                        <i class="fab fa-linkedin text-gray-400 text-lg"></i> LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 gap-6">
+                <p class="text-sm text-gray-500 font-light">
+                    &copy; 2026 Sami Karesniemi. All rights reserved.
+                </p>
+                <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
+                    Back to top <i class="fas fa-arrow-up text-xs"></i>
                 </a>
             </div>
-            
-            <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
-                Back to top <i class="fas fa-arrow-up text-xs"></i>
-            </a>
         </div>
     </footer>
 
