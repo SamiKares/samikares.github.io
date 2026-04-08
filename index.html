@@ -38,6 +38,39 @@
         .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
+        @media print {
+            /* Pakotetaan taustavärit ja kuvat näkyviin */
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+
+            /* Pakotetaan työpöytänäkymän (sivupalkki + sisältö) asettelu tulostukseen */
+            main { 
+                display: flex !important; 
+                flex-direction: row !important; 
+                margin-top: 0 !important; 
+            }
+            
+            aside { 
+                width: 33.333333% !important; 
+                display: block !important; 
+            }
+            
+            .md\:w-2\/3 { 
+                width: 66.666667% !important; 
+            }
+
+            /* Piilotetaan navigointipalkki ja PDF-latauspainike tulostuksesta */
+            nav, .mt-12.pt-8.border-t.flex.justify-center { 
+                display: none !important; 
+            }
+
+            /* Estetään tekstien katkeaminen sivunvaihdon kohdalla */
+            section { 
+                page-break-inside: avoid; 
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
