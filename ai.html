@@ -11,312 +11,264 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sami Karesniemi | Cognitive Systems Architect</title>
+    <title>Sami Karesniemi | AI Systems Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
         :root {
-            --bg-color: #050505;
-            --border-color: #1f1f22;
-            --text-main: #ededed;
-            --text-muted: #8a8f98;
+            --bg-color: #faf9f8;
+            --text-main: #1c1d20;
+            --text-muted: #5f6368;
+            --accent: #2563eb;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            /* Subtle drafting grid background for technical feel */
-            background-image: 
-                linear-gradient(var(--border-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-            background-size: 100px 100px;
-            background-position: center top;
         }
 
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-
-        /* Minimalist structural styling */
-        .layout-grid {
-            border-left: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            background-color: var(--bg-color); /* Hides grid lines inside content area */
+        .font-serif-custom { 
+            font-family: 'Playfair Display', serif; 
         }
 
-        .border-line {
-            border-bottom: 1px solid var(--border-color);
+        ::selection {
+            background: #cbd5e1;
+            color: #0f172a;
         }
 
-        /* Hover animations for project rows */
-        .project-row {
-            transition: background-color 0.3s ease;
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px -12px rgba(0,0,0,0.08);
+        }
+
+        .nav-link {
             position: relative;
         }
-        
-        .project-row::before {
+
+        .nav-link::after {
             content: '';
             position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 2px;
-            background-color: #ededed;
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-            transform-origin: center;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--text-main);
+            transition: width 0.3s ease;
         }
 
-        .project-row:hover {
-            background-color: #0a0a0c;
-        }
-
-        .project-row:hover::before {
-            transform: scaleY(1);
-        }
-
-        .project-row:hover .project-arrow {
-            transform: translateX(5px) translateY(-5px);
-            color: #ededed;
-        }
-
-        /* Custom selection color */
-        ::selection {
-            background: #ededed;
-            color: #050505;
-        }
-
-        /* Pill tags */
-        .tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.2rem 0.6rem;
-            border: 1px solid #27272a;
-            color: #a1a1aa;
-            border-radius: 999px;
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black">
+<body class="antialiased">
 
-    <div class="max-w-5xl mx-auto layout-grid min-h-screen relative">
-        
-        <nav class="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur-md border-line px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="font-mono text-xs font-medium tracking-widest uppercase">Sami.Karesniemi</span>
+    <nav class="fixed w-full top-0 z-50 bg-[#faf9f8]/80 backdrop-blur-lg border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-sm font-semibold tracking-wide text-gray-900">
+                SAMI KARESNIEMI
             </a>
 
-            <div class="hidden md:flex gap-8 font-mono text-[10px] uppercase tracking-[0.15em] text-zinc-400">
-                <a href="#about" class="hover:text-white transition-colors">Resume</a>
-                <a href="#capabilities" class="hover:text-white transition-colors">Stack</a>
-                <a href="#deployments" class="hover:text-white transition-colors">Deployments</a>
-                <a href="#log" class="hover:text-white transition-colors">Output_Log</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+                <a href="#about" class="nav-link hover:text-gray-900">Profile</a>
+                <a href="#expertise" class="nav-link hover:text-gray-900">Expertise</a>
+                <a href="#projects" class="nav-link hover:text-gray-900">Projects</a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-zinc-400 hover:text-white">
-                <i class="fas fa-bars"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900">
+                <i class="fas fa-bars text-lg"></i>
             </button>
-        </nav>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-[#050505] border-line px-6 py-4 flex-col gap-4 font-mono text-xs uppercase tracking-widest text-zinc-400">
-            <a href="#about" class="block hover:text-white">Resume</a>
-            <a href="#capabilities" class="block hover:text-white">Stack</a>
-            <a href="#deployments" class="block hover:text-white">Deployments</a>
-            <a href="#log" class="block hover:text-white">Output_Log</a>
         </div>
 
-        <header id="about" class="px-6 py-32 border-line relative overflow-hidden">
-            <p class="font-mono text-xs text-zinc-500 mb-8 uppercase tracking-[0.2em] flex items-center gap-4">
-                <span class="w-8 h-px bg-zinc-700"></span> Architect / Engineer
-            </p>
-            
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tighter leading-[1.1] mb-8 text-white">
-                Architecting <br>
-                <span class="text-zinc-600">Synthetic Logic.</span>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-6 flex-col gap-6 text-sm font-medium text-gray-600">
+            <a href="#about" class="block hover:text-gray-900">Profile</a>
+            <a href="#expertise" class="block hover:text-gray-900">Expertise</a>
+            <a href="#projects" class="block hover:text-gray-900">Projects</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6">
+        
+        <header id="about" class="pt-40 pb-24 md:pt-52 md:pb-32">
+            <p class="text-sm font-medium text-gray-500 tracking-widest uppercase mb-6">Software & AI Engineer</p>
+            <h1 class="text-5xl md:text-7xl font-serif-custom font-semibold tracking-tight leading-tight mb-8 text-gray-900 max-w-4xl">
+                Designing elegant architectures for <span class="italic text-gray-500">intelligent systems.</span>
             </h1>
-            
-            <p class="text-lg text-zinc-400 max-w-2xl font-light leading-relaxed mb-12">
-                Building the cognitive layer for enterprise systems. I specialize in designing autonomous <strong class="text-white font-medium">ReAct agents</strong>, neuro-symbolic architectures, and offensive security AI frameworks.
+            <p class="text-lg md:text-xl text-gray-600 max-w-2xl font-light leading-relaxed mb-12">
+                I bridge the gap between frontier AI models and robust software engineering. Specializing in autonomous agents, semantic search structures, and secure enterprise integrations.
             </p>
 
-            <div class="flex flex-wrap gap-4 font-mono text-xs">
-                <a href="#deployments" class="px-6 py-3 bg-white text-black font-medium hover:bg-zinc-200 transition-colors">
-                    [ VIEW_PROJECTS ]
+            <div class="flex flex-wrap gap-4 text-sm font-medium">
+                <a href="#projects" class="px-8 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors shadow-sm">
+                    View Portfolio
                 </a>
-                <a href="mailto:sami.karesniemi@gmail.com" class="px-6 py-3 border border-zinc-800 text-zinc-300 hover:border-zinc-500 transition-colors">
-                    INITIATE_CONTACT
+                <a href="mailto:sami.karesniemi@gmail.com" class="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full hover:border-gray-400 hover:bg-gray-50 transition-colors">
+                    Get in Touch
                 </a>
             </div>
         </header>
 
-        <section id="capabilities" class="border-line grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#1f1f22]">
+        <section id="expertise" class="py-24 border-t border-gray-200">
+            <h2 class="text-3xl font-serif-custom font-semibold mb-12 text-gray-900">Areas of Expertise</h2>
             
-            <div class="p-8">
-                <div class="font-mono text-[10px] text-zinc-500 mb-6 uppercase tracking-widest">01 / Frontier Models</div>
-                <h3 class="text-lg font-medium mb-4">Inference & Reasoning</h3>
-                <ul class="space-y-3 font-light text-zinc-400 text-sm">
-                    <li>Custom ReAct OODA Loops</li>
-                    <li>GPT-4o / Claude 3 Opus</li>
-                    <li>Local 16GB VRAM Deployments</li>
-                    <li>Gemma 3 & Llama-3 Arch</li>
-                </ul>
-            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Cognitive Systems</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Development of custom ReAct frameworks and autonomous workflow loops utilizing leading LLMs (GPT-4, Claude 3, Llama).
+                    </p>
+                </div>
 
-            <div class="p-8">
-                <div class="font-mono text-[10px] text-zinc-500 mb-6 uppercase tracking-widest">02 / Engineering</div>
-                <h3 class="text-lg font-medium mb-4">Security & Operations</h3>
-                <ul class="space-y-3 font-light text-zinc-400 text-sm">
-                    <li>Python & PyTorch Ecosystem</li>
-                    <li>Automated Pentesting/Auditing</li>
-                    <li>Vulnerability DB Integrations</li>
-                    <li>Data Sanitization Pipelines</li>
-                </ul>
-            </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Security & Architecture</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Building secure infrastructures, including automated vulnerability auditing, data sanitization, and compliance pipelines.
+                    </p>
+                </div>
 
-            <div class="p-8">
-                <div class="font-mono text-[10px] text-zinc-500 mb-6 uppercase tracking-widest">03 / Interface</div>
-                <h3 class="text-lg font-medium mb-4">Creative Synthesis</h3>
-                <ul class="space-y-3 font-light text-zinc-400 text-sm">
-                    <li>React & Modern UI/UX</li>
-                    <li>Tailwind CSS Architecture</li>
-                    <li>WebSocket Data Streams</li>
-                    <li>Generative AI Workflows</li>
-                </ul>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Full-Stack Integration</h3>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Crafting seamless user interfaces with React and Tailwind, connected to sophisticated backend intelligence and vector databases.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section id="deployments" class="border-line">
-            <div class="px-6 py-12 border-b border-[#1f1f22]">
-                <h2 class="text-3xl font-semibold tracking-tight">Active Deployments</h2>
-                <p class="font-mono text-xs text-zinc-500 mt-2">PRODUCTION & RESEARCH MODULES</p>
+        <section id="projects" class="py-24 border-t border-gray-200">
+            <div class="mb-16">
+                <h2 class="text-3xl font-serif-custom font-semibold text-gray-900 mb-4">Selected Work</h2>
+                <p class="text-gray-500 font-light">Recent engineering projects and open-source repositories.</p>
             </div>
 
-            <div class="project-row px-6 py-12 border-b border-[#1f1f22] grid md:grid-cols-12 gap-8 items-start">
-                <div class="md:col-span-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-2 h-2 bg-white rounded-full"></div>
-                        <h3 class="text-xl font-medium">CELL-7 Agent</h3>
-                    </div>
-                    <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">Cybersecurity / Automation</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag">ReAct Loop</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Local LLM</span>
-                    </div>
-                </div>
-                <div class="md:col-span-7">
-                    <p class="text-zinc-400 font-light leading-relaxed">
-                        An enterprise-grade autonomous <strong class="text-zinc-200">ReAct (Reason + Act)</strong> cybersecurity agent. Operates on a custom OODA-loop to autonomously audit local environments, perform active multi-threaded subnet sweeps, and query live NIST NVD CVE databases. Generates professional compliance reports using local 16GB VRAM frontier models without human intervention.
-                    </p>
-                </div>
-                <div class="md:col-span-1 flex justify-end">
-                    <i class="fas fa-arrow-right text-zinc-600 project-arrow transition-all"></i>
-                </div>
-            </div>
-
-            <div class="project-row px-6 py-12 border-b border-[#1f1f22] grid md:grid-cols-12 gap-8 items-start">
-                <div class="md:col-span-4">
-                    <h3 class="text-xl font-medium mb-1">JARVIS System</h3>
-                    <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">Voice Assistant / System Ctrl</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag">Gemma 3-27B</span>
-                        <span class="tag">WebSockets</span>
-                        <span class="tag">TTS/STT</span>
-                    </div>
-                </div>
-                <div class="md:col-span-7">
-                    <p class="text-zinc-400 font-light leading-relaxed">
-                        A fully voice-activated AI assistant powered by a local Gemma 3 model. Features an Arc Reactor-inspired graphic interface, real-time WebSocket communication, and full operating system-level task automation with speech synthesis.
-                    </p>
-                </div>
-                <div class="md:col-span-1 flex justify-end">
-                    <i class="fas fa-arrow-right text-zinc-600 project-arrow transition-all"></i>
-                </div>
-            </div>
-
-            <div class="project-row px-6 py-10 border-b border-[#1f1f22] grid md:grid-cols-12 gap-8 items-start">
-                <div class="md:col-span-4">
-                    <h3 class="text-lg font-medium mb-1">Sanitoija Data Engine</h3>
-                    <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mb-4">Data Privacy / Compliance</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag">Python Core</span>
-                        <span class="tag">Cryptography</span>
-                    </div>
-                </div>
-                <div class="md:col-span-7">
-                    <p class="text-zinc-400 font-light text-sm leading-relaxed">
-                        Enterprise-grade data sanitization framework. Automatically detects PII across 14+ data types (IBAN, SSN) and applies 8 distinct obfuscation strategies (Faker, Jitter, Hashing) to secure datasets before LLM training.
-                    </p>
-                </div>
-                <div class="md:col-span-1 flex justify-end">
-                    <i class="fas fa-arrow-right text-zinc-600 project-arrow transition-all"></i>
-                </div>
-            </div>
-
-            <div class="px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            <div class="grid md:grid-cols-2 gap-8">
                 
-                <div>
-                    <h4 class="font-medium mb-2 text-zinc-200">Vulcan Core Sentinel</h4>
-                    <p class="text-zinc-400 text-sm font-light mb-3">Autonomous system monitoring and anomaly detection engine using Gemini 1.5 Pro to parse complex server logs.</p>
-                    <div class="font-mono text-[9px] text-zinc-600 uppercase">Anomaly Detection · Server Ops</div>
+                <div class="project-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-3 block">Cybersecurity</span>
+                        <h3 class="text-2xl font-serif-custom font-semibold mb-3 text-gray-900">CELL-7 Agent</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">
+                            An enterprise-grade autonomous ReAct cybersecurity agent. Audits local environments, performs subnet sweeps, and queries live NIST NVD CVE databases using local models.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+                        <a href="https://github.com/SamiKares/ai_agent_scanner0.7" target="_blank" class="text-sm font-medium text-gray-900 hover:text-blue-600 inline-flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github text-lg"></i> View Repository &rarr;
+                        </a>
+                    </div>
                 </div>
 
-                <div>
-                    <h4 class="font-medium mb-2 text-zinc-200">CryptoPattern AI</h4>
-                    <p class="text-zinc-400 text-sm font-light mb-3">High-frequency financial data analysis using LSTM neural networks operating via live WebSocket streams.</p>
-                    <div class="font-mono text-[9px] text-zinc-600 uppercase">FinTech · TensorFlow</div>
+                <div class="project-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-3 block">System Assistant</span>
+                        <h3 class="text-2xl font-serif-custom font-semibold mb-3 text-gray-900">Clippy AI</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">
+                            A modern, voice-activated AI assistant integrated deeply with system controls. Features real-time WebSocket communication and operating system-level task automation.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+                        <a href="https://github.com/SamiKares/Clippy_Ai" target="_blank" class="text-sm font-medium text-gray-900 hover:text-blue-600 inline-flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github text-lg"></i> View Repository &rarr;
+                        </a>
+                    </div>
                 </div>
 
-                <div>
-                    <h4 class="font-medium mb-2 text-zinc-200">Työbotti Job Matcher</h4>
-                    <p class="text-zinc-400 text-sm font-light mb-3">Intelligent recruitment system using semantic search vectors. Parses resumes and matches candidates contextually.</p>
-                    <div class="font-mono text-[9px] text-zinc-600 uppercase">NLP · Semantic Search</div>
+                <div class="project-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-3 block">Information Retrieval</span>
+                        <h3 class="text-2xl font-serif-custom font-semibold mb-3 text-gray-900">PDF RAG Engine</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">
+                            A highly optimized Retrieval-Augmented Generation system. Processes complex PDF documents into vector embeddings for accurate, context-aware semantic search and querying.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+                        <a href="https://github.com/SamiKares/PDF_RAG" target="_blank" class="text-sm font-medium text-gray-900 hover:text-blue-600 inline-flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github text-lg"></i> View Repository &rarr;
+                        </a>
+                    </div>
                 </div>
 
-                <div>
-                    <h4 class="font-medium mb-2 text-zinc-200">Gemini Portfolio Pro</h4>
-                    <p class="text-zinc-400 text-sm font-light mb-3">Generative tool to dynamically architect and deploy personalized portfolio websites based on user prompt parameters.</p>
-                    <div class="font-mono text-[9px] text-zinc-600 uppercase">React · Generative UI</div>
+                <div class="project-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-3 block">Multi-Agent Systems</span>
+                        <h3 class="text-2xl font-serif-custom font-semibold mb-3 text-gray-900">LLM Office Simulation</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">
+                            An experimental framework simulating a corporate environment using multiple interacting LLM agents to study emergent behaviors and complex workflow delegation.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+                        <a href="https://github.com/SamiKares/LLMOfficeSimulation" target="_blank" class="text-sm font-medium text-gray-900 hover:text-blue-600 inline-flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github text-lg"></i> View Repository &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-3 block">Monitoring & Ops</span>
+                        <h3 class="text-2xl font-serif-custom font-semibold mb-3 text-gray-900">Sentinel AI Scan</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">
+                            Autonomous system monitoring and anomaly detection engine. Parses complex server logs dynamically to identify potential security threats and operational bottlenecks.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+                        <a href="https://github.com/SamiKares/SentinelAiScan" target="_blank" class="text-sm font-medium text-gray-900 hover:text-blue-600 inline-flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github text-lg"></i> View Repository &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col h-full">
+                    <div class="flex-grow">
+                        <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-3 block">Data Compliance</span>
+                        <h3 class="text-2xl font-serif-custom font-semibold mb-3 text-gray-900">SafetyScan</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">
+                            Enterprise data sanitization framework. Automatically detects PII and applies distinct obfuscation strategies to secure datasets prior to model training or analytics.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-6 border-t border-gray-100">
+                        <a href="https://github.com/SamiKares/safetyscan" target="_blank" class="text-sm font-medium text-gray-900 hover:text-blue-600 inline-flex items-center gap-2 transition-colors">
+                            <i class="fab fa-github text-lg"></i> View Repository &rarr;
+                        </a>
+                    </div>
                 </div>
 
             </div>
         </section>
 
-        <section id="log" class="border-line px-6 py-16">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <h2 class="text-2xl font-semibold tracking-tight">Generative Output Log</h2>
-                <p class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest mt-4 md:mt-0">Render Engine: Midjourney v6</p>
-            </div>
+    </main>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
-                <div class="aspect-square bg-zinc-900 border border-zinc-800 overflow-hidden group">
-                    <img src="ai-images/1.jpg" alt="AI Generated Architecture" class="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
-                </div>
-                <div class="aspect-square bg-zinc-900 border border-zinc-800 overflow-hidden group">
-                    <img src="ai-images/2.jpg" alt="AI Generated Concept" class="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
-                </div>
-                <div class="aspect-square bg-zinc-900 border border-zinc-800 overflow-hidden group">
-                    <img src="ai-images/3.jpg" alt="AI Generated Concept" class="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
-                </div>
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-sm text-gray-500 font-light">
+                &copy; 2026 Sami Karesniemi. All rights reserved.
+            </p>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="mailto:sami.karesniemi@gmail.com" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
             </div>
-        </section>
-
-        <footer class="px-6 py-12 flex flex-col items-center justify-center text-center">
-            <a href="#" class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 hover:text-white transition-colors mb-6 flex items-center gap-2">
-                <i class="fas fa-arrow-up"></i> Return to Header
+            
+            <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-2">
+                Back to top <i class="fas fa-arrow-up text-xs"></i>
             </a>
-            <p class="text-sm font-light text-zinc-500">
-                Sami Karesniemi &copy; 2026
-            </p>
-            <p class="font-mono text-[10px] text-zinc-600 mt-2">
-                SYS_STATUS: <span class="text-white">OPERATIONAL</span>
-            </p>
-        </footer>
-
-    </div>
+        </div>
+    </footer>
 
     <script>
         const btn = document.getElementById('mobile-menu-btn');
@@ -328,9 +280,9 @@
             menu.classList.toggle('flex');
             
             if (menu.classList.contains('hidden')) {
-                icon.className = 'fas fa-bars';
+                icon.className = 'fas fa-bars text-lg';
             } else {
-                icon.className = 'fas fa-times';
+                icon.className = 'fas fa-times text-lg';
             }
         });
 
@@ -339,7 +291,7 @@
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
                 menu.classList.remove('flex');
-                icon.className = 'fas fa-bars';
+                icon.className = 'fas fa-bars text-lg';
             });
         });
     </script>
