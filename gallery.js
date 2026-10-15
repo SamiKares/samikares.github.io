@@ -22,8 +22,9 @@
   function render() {
     grid.replaceChildren();
     filtered.slice(0, visible).forEach((item, index) => {
-      const button = document.createElement('button');
+      const button = document.createElement('a');
       button.className = 'gallery-tile';
+      button.href = item.src;
       button.dataset.imageIndex = String(index);
       button.setAttribute('aria-label', 'Avaa ' + item.title);
       const img = document.createElement('img');
@@ -42,13 +43,22 @@
       arrow.setAttribute('aria-hidden', 'true');
       caption.append(label, arrow);
       button.append(img, caption);
-      button.addEventListener('click', () => open(index, button));
+      button.addEventListener('click', event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button > 0) return;
+        event.preventDefault();
+        open(index, button);
+      });
       grid.append(button);
     });
     count.textContent = Math.min(visible, filtered.length) + ' / ' + filtered.length + ' kuvaa';
     more.hidden = visible >= filtered.length;
     const remaining = Math.min(batchSize, filtered.length - visible);
     if (remaining > 0) more.textContent = 'Näytä ' + remaining + ' lisää ＋';
+  }
+
+  function writeImageHash(item) {
+    if (!window.location || !window.history?.replaceState) return;
+    window.history.replaceState(null, '', window.location.pathname + window.location.search + '#kuva=' + encodeURIComponent(item.filename));
   }
 
   function updateLightbox() {
@@ -58,6 +68,8 @@
     title.textContent = item.title;
     position.textContent = (activeIndex + 1) + ' / ' + filtered.length;
     original.href = item.src;
+    original.title = item.filename;
+    writeImageHash(item);
     document.querySelector('#lightbox-prev').disabled = filtered.length < 2;
     document.querySelector('#lightbox-next').disabled = filtered.length < 2;
   }
@@ -85,7 +97,7 @@
   });
   filterButtons.forEach(button => button.addEventListener('click', () => {
     const category = button.dataset.category;
-    filtered = category === 'all' ? data : data.filter(item => item.category === category);
+    filtered = category === 'all' ? data : data.filter(item => (item.categories || [item.category]).includes(category));
     visible = batchSize;
     filterButtons.forEach(filter => {
       const selected = filter === button;
@@ -99,6 +111,9 @@
   document.querySelector('#lightbox-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     document.body.style.overflow = previousOverflow;
+    if (window.location?.hash.startsWith('#kuva=') && window.history?.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search + '#kuvat');
+    }
     trigger?.focus();
   });
   dialog.addEventListener('click', event => {
@@ -111,5 +126,27 @@
     if (event.key === 'ArrowRight') { event.preventDefault(); move(1); }
     if (event.key === 'ArrowLeft') { event.preventDefault(); move(-1); }
   });
+  function openLinkedImage() {
+    if (!window.location) return;
+    const filename = new URLSearchParams(window.location.hash.slice(1)).get('kuva');
+    if (!filename) return;
+    const item = data.find(photo => photo.filename === filename);
+    if (!item) return;
+    if (!filtered.includes(item)) {
+      filtered = data;
+      visible = batchSize;
+      filterButtons.forEach(button => {
+        const active = button.dataset.category === 'all';
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      render();
+    }
+    activeIndex = filtered.indexOf(item);
+    if (dialog.open) updateLightbox();
+    else open(activeIndex, grid.children[activeIndex] || more);
+  }
+  window.addEventListener?.('hashchange', openLinkedImage);
   render();
+  openLinkedImage();
 })();
