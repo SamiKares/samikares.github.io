@@ -1,0 +1,25 @@
+KUVAPÄIVITYS – Sami Karesniemi
+
+Paketissa on kaksi päivitettävää tiedostoa:
+  index.html
+  assets/it-ai-security.svg
+
+1. Pura ZIP-tiedosto omalle koneellesi.
+2. Kopioi index.html GitHub-repositorion julkaistavan sivuston juureen
+   nykyisen index.html-tiedoston päälle.
+3. Kopioi it-ai-security.svg saman juuren assets-kansioon:
+   assets/it-ai-security.svg
+4. Säilytä muut nykyiset tiedostot ja kansiot.
+5. Tallenna muutokset GitHubissa (Commit changes). Odota Pages-julkaisua.
+   Jos vanha kuva näkyy vielä, päivitä sivu painamalla Ctrl+F5.
+
+SVG on kevyt vektorikuva, jossa on läpinäkyvä tausta. IT-infra on
+vasemmalla, kyberturva keskellä ja AI oikealla.
+
+Päivitä molemmat tiedostot: etusivulla SVG on upotettu myös HTML-koodiin.
+Pelkkä assets-kuvan korvaaminen ei siksi muuta nykyistä etusivua.
+
+Jos GitHub Pagesin lähde on main / (root), tiedostot tulevat suoraan
+main-haaran juureen ja sen assets-kansioon, eivät uuteen main-alikansioon.
+Jos julkaiset /docs-kansiosta, päivitä docs/index.html ja
+docs/assets/it-ai-security.svg. Säilytä nykyinen julkaisulähde.

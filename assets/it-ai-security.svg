@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="geometry-drawing system-mark" viewBox="0 0 520 450" fill="none">
+  <title>IT-infra vasemmalla, kyberturva keskellä ja tekoäly oikealla</title>
+  <style>
+    .system-mark .guide{fill:none;stroke:#9ca78f;stroke-width:.75;stroke-dasharray:3 5}
+    .system-mark .dimension{fill:none;stroke:#8a987b;stroke-width:.75}
+    .system-mark .wire{fill:none;stroke:#60734f;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+    .system-mark .trace{fill:none;stroke:#7c9067;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+    .system-mark .surface{fill:#e7eadf;stroke:#7b896d;stroke-width:1.1;stroke-linejoin:round}
+    .system-mark .side{fill:#d4ddc7;stroke:#71825f;stroke-width:1.1;stroke-linejoin:round}
+    .system-mark .face{fill:#e0e6d5;stroke:#71825f;stroke-width:1.1;stroke-linejoin:round}
+    .system-mark .core{fill:#c3cfb2;stroke:#536943;stroke-width:1.2;stroke-linejoin:round}
+    .system-mark .point{fill:#4b633a;stroke:#f1efe8;stroke-width:1.8}
+    .system-mark text{fill:#526644;font:9.5px "SFMono-Regular",Consolas,monospace;letter-spacing:1px}
+  </style>
+  <g class="guide">
+    <circle cx="264" cy="225" r="175"/>
+    <path d="M67 294L256 185L452 298L265 406Z M256 185V68 M67 294V175L256 66L452 179V298 M265 406V286L67 175 M265 286L452 179 M110 346L307 232 M170 381L366 267"/>
+  </g>
+  <g class="dimension">
+    <path d="M51 307L248 421 M47 300L55 314 M244 414L252 428 M470 242V312 M465 242H475 M465 312H475 M268 49L443 150 M264 42L272 56 M439 143L447 157"/>
+  </g>
+  <g data-part="circuit-board">
+    <path class="surface" d="M67 294L256 185L452 298L265 406Z"/>
+    <path class="face" d="M67 294L265 406V419L67 307Z"/>
+    <path class="side" d="M265 406L452 298V311L265 419Z"/>
+    <g class="trace">
+      <path d="M99 294L153 263L203 292L235 273 M127 311L163 290L197 310L224 294 M157 329L188 311 M179 342L223 317L259 338L288 321 M208 360L247 338 M237 377L298 342L330 360 M281 280L310 297L351 273 M304 310L330 325L367 303 M315 332L341 347L386 321 M344 251L375 233L408 252"/>
+      <circle cx="99" cy="294" r="3"/><circle cx="127" cy="311" r="3"/><circle cx="157" cy="329" r="3"/><circle cx="208" cy="360" r="3"/><circle cx="237" cy="377" r="3"/><circle cx="330" cy="360" r="3"/>
+    </g>
+  </g>
+  <g data-part="shared-connections"><path class="trace" d="M134 284V301L183 329L223 306 M394 287V302L342 332L298 307 M260 301V334"/><circle class="point" cx="134" cy="301" r="4"/><circle class="point" cx="260" cy="334" r="4"/><circle class="point" cx="394" cy="302" r="4"/></g><g data-part="infrastructure" transform="translate(-20 30)">
+    <path class="surface" d="M107 155L154 128L202 155L154 182Z"/>
+    <path class="face" d="M107 155L154 182V254L107 227Z"/>
+    <path class="side" d="M154 182L202 155V227L154 254Z"/>
+    <g class="wire">
+      <path d="M107 179L154 206L202 179 M107 203L154 230L202 203 M116 171L143 187 M116 195L143 211 M116 219L143 235 M166 188L190 174 M166 212L190 198 M166 236L190 222"/>
+    </g>
+    <circle class="point" cx="145" cy="199" r="2.6"/>
+    <circle class="point" cx="145" cy="223" r="2.6"/>
+    </g>
+  <g data-part="ai-processor" transform="translate(113 8)">
+    <g class="wire">
+      <path d="M216 217L203 210 M231 208L218 201 M246 199L233 192 M261 190L248 183 M296 194L309 187 M311 203L324 196 M326 212L339 205 M341 221L354 214 M219 240L206 247 M234 249L221 256 M249 258L236 265 M264 267L251 274 M295 268L308 275 M310 259L323 266 M325 250L338 257 M340 241L353 248"/>
+    </g>
+    <path class="side" d="M211 225L281 265L351 225V239L281 279L211 239Z"/>
+    <path class="core" d="M211 225L281 185L351 225L281 265Z"/>
+    <path class="wire" d="M229 225L281 195L333 225L281 255Z"/>
+    <g class="wire">
+      <path d="M251 219L277 204L304 219L278 235Z M251 219L265 237L278 235L295 244 M277 204L278 235 M304 219L309 235L295 244 M251 219L239 230"/>
+    </g>
+    <g class="point">
+      <circle cx="277" cy="204" r="3.7"/><circle cx="251" cy="219" r="3.7"/><circle cx="304" cy="219" r="3.7"/><circle cx="278" cy="235" r="4.5"/><circle cx="265" cy="237" r="3"/><circle cx="295" cy="244" r="3"/>
+    </g>
+  </g>
+  <g data-part="cyber-security" transform="translate(-129 -42)">
+    <path class="surface" d="M389 222L430 242V282C430 307 412 328 389 343C366 328 348 307 348 282V242Z"/>
+    <path class="wire" d="M389 233L420 249V282C420 301 407 317 389 330C371 317 358 301 358 282V249Z"/>
+    <path class="wire" d="M379 274V265C379 251 399 251 399 265V274"/>
+    <rect class="face" x="373" y="273" width="32" height="27" rx="2"/>
+    <circle class="point" cx="389" cy="284" r="3.2"/>
+    <path class="wire" d="M389 287V292"/>
+    </g>
+  <g class="guide"><path d="M134 158V128 M260 180V129 M394 191V128"/></g><text x="134" y="113" text-anchor="middle">01 / IT INFRA</text><text x="260" y="113" text-anchor="middle">02 / CYBERSECURITY</text><text x="394" y="113" text-anchor="middle">03 / AI</text><text x="105" y="382" transform="rotate(30 105 382)">CONNECTED SYSTEMS</text></svg>
