@@ -18,6 +18,8 @@
   let activeIndex = 0;
   let trigger;
   let previousOverflow = '';
+  let historyEntryOwned = false;
+  let handlingHistory = false;
 
   function render() {
     grid.replaceChildren();
@@ -26,7 +28,9 @@
       button.className = 'gallery-tile';
       button.href = item.src;
       button.dataset.imageIndex = String(index);
-      button.setAttribute('aria-label', 'Avaa ' + item.title);
+      button.setAttribute('aria-label', 'Avaa esikatselu: ' + item.title);
+      button.setAttribute('aria-haspopup', 'dialog');
+      button.setAttribute('aria-controls', 'gallery-dialog');
       const img = document.createElement('img');
       img.src = item.src;
       img.alt = item.alt;
@@ -39,7 +43,7 @@
       const label = document.createElement('span');
       label.textContent = item.title;
       const arrow = document.createElement('span');
-      arrow.textContent = '↗';
+      arrow.textContent = '＋';
       arrow.setAttribute('aria-hidden', 'true');
       caption.append(label, arrow);
       button.append(img, caption);
@@ -58,7 +62,7 @@
 
   function writeImageHash(item) {
     if (!window.location || !window.history?.replaceState) return;
-    window.history.replaceState(null, '', window.location.pathname + window.location.search + '#kuva=' + encodeURIComponent(item.filename));
+    window.history.replaceState(window.history.state ?? null, '', window.location.pathname + window.location.search + '#kuva=' + encodeURIComponent(item.filename));
   }
 
   function updateLightbox() {
@@ -74,9 +78,16 @@
     document.querySelector('#lightbox-next').disabled = filtered.length < 2;
   }
 
-  function open(index, button) {
+  function open(index, button, fromHistory = false) {
     activeIndex = index;
     trigger = button;
+    historyEntryOwned = false;
+    if (!fromHistory && window.history?.pushState) {
+      window.history.pushState({...window.history.state, portfolioLightbox: true}, '', window.location.pathname + window.location.search + '#kuva=' + encodeURIComponent(filtered[index].filename));
+      historyEntryOwned = true;
+    } else if (fromHistory) {
+      historyEntryOwned = Boolean(window.history?.state?.portfolioLightbox);
+    }
     updateLightbox();
     previousOverflow = document.body.style.overflow;
     dialog.showModal();
@@ -111,8 +122,11 @@
   document.querySelector('#lightbox-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     document.body.style.overflow = previousOverflow;
-    if (window.location?.hash.startsWith('#kuva=') && window.history?.replaceState) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search + '#kuvat');
+    if (!handlingHistory && historyEntryOwned && window.history?.back) {
+      historyEntryOwned = false;
+      window.history.back();
+    } else if (!handlingHistory && window.location?.hash.startsWith('#kuva=') && window.history?.replaceState) {
+      window.history.replaceState(window.history.state ?? null, '', window.location.pathname + window.location.search + '#kuvat');
     }
     trigger?.focus();
   });
@@ -129,7 +143,15 @@
   function openLinkedImage() {
     if (!window.location) return;
     const filename = new URLSearchParams(window.location.hash.slice(1)).get('kuva');
-    if (!filename) return;
+    if (!filename) {
+      if (dialog.open) {
+        handlingHistory = true;
+        dialog.close();
+        handlingHistory = false;
+      }
+      historyEntryOwned = false;
+      return;
+    }
     const item = data.find(photo => photo.filename === filename);
     if (!item) return;
     if (!filtered.includes(item)) {
@@ -144,9 +166,10 @@
     }
     activeIndex = filtered.indexOf(item);
     if (dialog.open) updateLightbox();
-    else open(activeIndex, grid.children[activeIndex] || more);
+    else open(activeIndex, grid.children[activeIndex] || more, true);
   }
   window.addEventListener?.('hashchange', openLinkedImage);
+  window.addEventListener?.('popstate', openLinkedImage);
   render();
   openLinkedImage();
 })();

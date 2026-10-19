@@ -68,6 +68,7 @@ document.querySelectorAll('a[href="#demo"]').forEach(link => link.addEventListen
 
 const dialog = document.querySelector('#project-dialog');
 let dialogTrigger;
+let dialogPreviousOverflow = '';
 function closeDialog() { dialog.close(); }
 document.querySelectorAll('.project-open').forEach(button => button.addEventListener('click', () => {
   const project = projects[button.dataset.project];
@@ -87,13 +88,15 @@ document.querySelectorAll('.project-open').forEach(button => button.addEventList
     section.append(heading, paragraph);
     body.append(section);
   });
+  dialogPreviousOverflow = document.body.style.overflow;
   dialog.showModal();
   dialog.scrollTop = 0;
   document.body.style.overflow = 'hidden';
+  document.querySelector('.dialog-close').focus();
 }));
 document.querySelector('.dialog-close').addEventListener('click', closeDialog);
 dialog.addEventListener('click', event => { if (event.target === dialog && (event.clientX < dialog.getBoundingClientRect().left || event.clientX > dialog.getBoundingClientRect().right || event.clientY < dialog.getBoundingClientRect().top || event.clientY > dialog.getBoundingClientRect().bottom)) closeDialog(); });
-dialog.addEventListener('close', () => { document.body.style.overflow = ''; if (dialogTrigger) dialogTrigger.focus(); });
+dialog.addEventListener('close', () => { document.body.style.overflow = dialogPreviousOverflow; if (dialogTrigger) dialogTrigger.focus(); });
 
 const toggle = document.querySelector('#demo-toggle');
 const slot = document.querySelector('#middle-slot');
