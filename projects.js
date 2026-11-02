@@ -53,7 +53,7 @@
     });
     const actions = document.querySelector('#dialog-actions'); actions.replaceChildren();
     if (project.repo) {
-      const link = element('a', 'Lähdekoodi GitHubissa ↗', 'button primary');
+      const link = element('a', project.repoLabel || 'Lähdekoodi GitHubissa ↗', 'button primary');
       link.href = project.repo; link.target = '_blank'; link.rel = 'noopener noreferrer'; actions.append(link);
     }
     if (project.demo) {

@@ -169,13 +169,16 @@
     { title: 'Valokuva-arkisto', hint: 'Sivu', href: 'photography.html', words: 'valokuvaus skate lumi ihmiset' },
     { title: 'Ota yhteyttä', hint: 'Yhteys', href: 'index.html#yhteys', words: 'mail sähköposti yhteys contact' },
     { title: 'Lataa CV / PDF', hint: 'Tiedosto', href: 'assets/documents/sami-karesniemi-cv-20261102.pdf', words: 'resume ansioluettelo cv pdf' },
-    { title: 'Haavoittuvuuksien korjaus Intunella', hint: 'Projekti', href: 'ai.html#remediation', words: 'intune nessus cve security' },
-    { title: 'SOC Command Center Pro', hint: 'Projekti', href: 'ai.html#soc', words: 'fortinet telemetry tietoturva verkko' },
-    { title: 'CELL-7 Agent', hint: 'Projekti', href: 'ai.html#cell7', words: 'agentti ai llm local' },
-    { title: 'Paikallinen dokumenttihaku', hint: 'Projekti', href: 'ai.html#rag', words: 'pdf haku dokumentti' },
-    { title: 'Turvabotti', hint: 'Verkkosivu', href: 'https://turvabotti.com/', words: 'turvabotti projekti' },
-    { title: 'Konenäön selaindemo', hint: 'Demo', href: 'ai.html#lab', words: 'kamera roi opencv edge vision' },
-    { title: 'Data-Driven Endpoint Security', hint: 'Insinöörityö', href: 'ai.html#thesis', words: 'opinnäytetyö metropolia intune' }
+    {"title": "Data-Driven Endpoint Security", "hint": "Insinöörityö", "href": "ai.html#thesis", "words": "tietokanta cve kyberturvasyötteet intune endpoint opinnäytetyö"},
+    {"title": "SOC Command Center Pro", "hint": "Projekti", "href": "ai.html#soc", "words": "fortinet tietoturva verkko"},
+    {"title": "Paikallinen konenäkö", "hint": "Projekti", "href": "ai.html#vision", "words": "kamerat hanwha opencv yolo"},
+    {"title": "SafetyScan", "hint": "Projekti", "href": "ai.html#safety", "words": "konenäkö turvavaruste kypärä liivi ppe"},
+    {"title": "Laiteinventaarion tietokanta", "hint": "Projekti", "href": "ai.html#asset", "words": "m-files intune sophos entra inventaario"},
+    {"title": "PowerShell-ohjatut Intune-päivitykset", "hint": "Projekti", "href": "ai.html#adobe", "words": "adobe reader acrobat powershell"},
+    {"title": "CELL-7 Agent", "hint": "Projekti", "href": "ai.html#cell7", "words": "agentti llm nvd cve"},
+    {"title": "Paikallinen dokumenttihaku", "hint": "Projekti", "href": "ai.html#rag", "words": "pdf haku dokumentti"},
+    {"title": "Turvabotti", "hint": "Verkkosivu", "href": "https://turvabotti.com/", "words": "turvabotti projekti"},
+    {"title": "Konenäön selaindemo", "hint": "Demo", "href": "ai.html#lab", "words": "kamera roi opencv edge vision"}
   ];
   function renderRoutes() {
     const query = paletteInput.value.toLocaleLowerCase('fi').trim();
@@ -217,25 +220,30 @@
   });
 
   // Decode only after a real pointer or keyboard activation.
-  $$('[data-reveal-phone]').forEach(button => button.addEventListener('click', event => {
-    if (!event.isTrusted) return;
+  function revealPhone(button, event, focus = true) {
+    if (!(event instanceof Event) || !event.isTrusted || !button?.isConnected) return;
     const number = [112, 104, 110, 99, 111, 110, 106, 107, 110, 106, 109, 106, 109].map(value => String.fromCharCode(value ^ 91)).join('');
     const link = document.createElement('a');
     link.href = 'tel:' + number;
     link.textContent = number.slice(0, 4) + ' ' + number.slice(4, 6) + ' '
       + number.slice(6, 9) + ' ' + number.slice(9);
     button.replaceWith(link);
-    link.focus({ preventScroll: true });
-  }));
+    if (focus) link.focus({ preventScroll: true });
+    return link;
+  }
+  window.skRevealPhone = revealPhone;
+  $$('[data-reveal-phone]').forEach(button => button.addEventListener('click', event => revealPhone(button, event)));
 
   $$('[data-copy]').forEach(button => button.addEventListener('click', async () => {
     const value = button.dataset.copy;
+    const previousFocus = document.activeElement;
     try {
       if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(value);
       else {
         const area = document.createElement('textarea'); area.value = value;
         area.style.cssText = 'position:fixed;left:-9999px;top:0'; document.body.append(area); area.select();
         const copied = document.execCommand('copy'); area.remove();
+        if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
         if (!copied) throw new Error('copy failed');
       }
       notify('Sähköpostiosoite kopioitu.');

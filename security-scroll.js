@@ -149,40 +149,54 @@
     }
 
     const position = ease(progress);
+    const breakup = ramp(.1, .34, progress) * (1 - ramp(.72, .96, progress));
+    const fragments = ramp(.08, .18, progress) * (1 - ramp(.9, .98, progress));
     // Leave the text column clear; move left later, as the project enters view.
     const horizontalPosition = ease(progress ** 2.6);
     const lift = Math.sin(Math.PI * progress);
-    const x = mix(anchors.sourceX, anchors.targetX, horizontalPosition)
+    let x = mix(anchors.sourceX, anchors.targetX, horizontalPosition)
       + lift * Math.min(200, window.innerWidth * .145);
-    const y = mix(anchors.sourceY, anchors.targetY, position)
+    let y = mix(anchors.sourceY, anchors.targetY, position)
       - window.scrollY - lift * 125;
-    const scale = mix(anchors.sourceScale, anchors.targetScale, position) * (1 + lift * .12);
+    const growth = mix(.48, .85, clamp((window.innerWidth - 480) / 600));
+    const scale = mix(anchors.sourceScale, anchors.targetScale, position) * (1 + breakup * growth);
+    // Distances are in screen pixels: the fragments spread across the view,
+    // instead of remaining a small ring around the lock on larger screens.
+    const spread = Math.min(190, Math.max(24, (window.innerWidth / 2 - 24 - 74 * scale) / 1.2));
     const rotation = -8 * lift;
     const mode = source.closest('.system-stage')?.dataset.mode;
     const initialOpacity = mode === 'infra' || mode === 'ai' ? .27 : 1;
 
-    const breakup = ramp(.1, .34, progress) * (1 - ramp(.68, .94, progress));
-    const fragments = ramp(.08, .18, progress) * (1 - ramp(.88, .96, progress));
     shield.setAttribute('opacity', 1 - fragments);
     assembly.setAttribute('opacity', fragments);
     connections.setAttribute('opacity', breakup * .72);
     orbit.setAttribute('opacity', breakup * .55);
-    orbit.setAttribute('transform', `rotate(${breakup * 38} ${centre.x} ${centre.y})`);
+    orbit.setAttribute('transform', `translate(${centre.x} ${centre.y}) rotate(${breakup * 65}) scale(${1 + breakup * .35}) translate(${-centre.x} ${-centre.y})`);
+    let radius = 61 * scale;
     panels.forEach(({ panel, angle, line, point }, index) => {
       const separation = ramp(.08 + index * .018, .32 + index * .012, progress)
-        * (1 - ramp(.66 + (5 - index) * .014, .93, progress));
-      const distance = separation * (26 + index % 3 * 7);
-      const twist = separation * Math.sin(Math.PI * progress) * .24;
+        * (1 - ramp(.7 + (5 - index) * .016, .96, progress));
+      const distance = separation * spread / scale * (.82 + index % 3 * .19);
+      const twist = separation * ((progress - .5) * 1.2 + lift * .14 * (index - 2.5));
       const dx = Math.cos(angle + twist) * distance;
       const dy = Math.sin(angle + twist) * distance;
-      const rotation = separation * (index % 2 ? 1 : -1) * (9 + lift * 14);
+      const rotation = separation * (index % 2 ? 1 : -1) * (28 + lift * 47);
       panel.setAttribute('transform', `translate(${dx} ${dy}) rotate(${rotation} ${centre.x} ${centre.y})`);
       const node = radialPoint(angle + twist, 28 + distance);
       line.setAttribute('x2', node.x);
       line.setAttribute('y2', node.y);
       point.setAttribute('cx', node.x);
       point.setAttribute('cy', node.y);
+      radius = Math.max(radius, (distance + 74) * scale);
     });
+
+    // Keep the full expanded assembly inside the viewport, including on phones.
+    const keepInside = (value, size) => {
+      const margin = radius + 18;
+      return margin * 2 >= size ? size / 2 : Math.max(margin, Math.min(size - margin, value));
+    };
+    x = keepInside(x, window.innerWidth);
+    y = keepInside(y, window.innerHeight);
     const outline = lockedCore.map(([x, y], index) => {
       const [toX, toY] = openCore[index];
       return `${index ? 'L' : 'M'}${mix(x, toX, breakup)} ${mix(y, toY, breakup)}`;
