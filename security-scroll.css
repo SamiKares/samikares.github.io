@@ -1,0 +1,27 @@
+/* One shield travels from the opening schematic to the first security project. */
+.security-project .case-top{align-items:center;min-height:126px;padding-block:18px;gap:16px}
+.security-project-label{display:flex;align-items:center;gap:19px;min-width:0}
+.security-project-label>span:last-child{font:10px/1.65 var(--mono);letter-spacing:.1em;color:var(--green)}
+.security-dock{display:grid;place-items:center;position:relative;width:74px;height:96px;flex-shrink:0;background:radial-gradient(ellipse,#a5c78012,transparent 72%);border:1px solid #92ac7033;isolation:isolate}
+.security-dock::before,.security-dock::after{content:'';position:absolute;width:10px;height:10px;border-color:#a4bf7c88;border-style:solid;pointer-events:none}
+.security-dock::before{left:-1px;top:-1px;border-width:1px 0 0 1px}
+.security-dock::after{right:-1px;bottom:-1px;border-width:0 1px 1px 0}
+.shield-icon{display:block;width:50px;height:auto;aspect-ratio:82/121;overflow:visible;fill:none;flex-shrink:0}
+.security-dock>.shield-icon{filter:drop-shadow(0 4px 12px #a9c78512)}
+.shield-flight{display:none;position:fixed;left:0;top:0;width:82px;height:121px;z-index:35;pointer-events:none;opacity:0;transform-origin:50% 50%;contain:layout style}
+html[data-security-scroll=flight] .shield-flight{display:block}
+.shield-flight>.shield-icon{width:100%;height:100%;filter:drop-shadow(0 12px 14px #17211835) drop-shadow(0 0 17px #c4df9e24)}
+.shield-connections{fill:#71825f;stroke:#71825f;stroke-width:.7;stroke-dasharray:2 3}
+.shield-connections circle{stroke:none}
+.shield-orbit{fill:none;stroke:#71825f;stroke-width:.65;stroke-dasharray:4 4}
+.shield-core-light{fill:#c9d9ad;stroke:#60734f;stroke-width:1}
+.home-page .system-drawing .security-story-source{transition:filter .4s}
+.home-page .system-drawing .security-source-away{opacity:0!important;filter:none!important}
+html[data-security-scroll] .security-dock>.shield-icon{opacity:0}
+html[data-security-scroll=docked] .security-dock>.shield-icon{opacity:1}
+html[data-security-scroll=docked] .security-dock{border-color:#a4bf7c77;background:radial-gradient(ellipse,#a5c78020,transparent 72%)}
+[data-theme=dark] .shield-icon .surface,[data-theme=dark] .shield-icon .face{fill:#bccba8}
+@media(max-width:900px){.security-project .case-top{min-height:114px;padding-block:16px}.security-dock{width:65px;height:85px}.security-dock>.shield-icon{width:44px}.security-project-label{gap:15px}.security-project-label>span:last-child{font-size:9px}}
+@media(max-width:380px){.security-project .case-top{padding-inline:18px;gap:9px}.security-project-label{gap:11px}.security-project-label>span:last-child{font-size:8px;letter-spacing:.06em}.security-project .case-state{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.shield-flight{display:none!important}.home-page .system-drawing .security-story-source{opacity:1!important}.security-dock>.shield-icon{opacity:1!important}}
+@media print{.shield-flight{display:none!important}}
