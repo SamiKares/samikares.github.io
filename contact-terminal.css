@@ -23,6 +23,8 @@
 .terminal-window .phone-contact{font:11px/1.7 var(--mono)}
 .terminal-window .phone-reveal{text-decoration-color:#8eaa6e77}
 .contact-terminal .contact-email-row{margin-top:27px;padding:19px 0;display:flex;gap:22px;border-color:#71825f55}
+.email-contact{display:flex;align-items:center;flex:1;min-width:0}
+.contact-terminal .email-reveal{font:clamp(17px,2vw,27px)/1.4 var(--mono);letter-spacing:-.04em;color:var(--terminal-accent);text-align:left;text-decoration:underline;text-decoration-color:#8eaa6e77;text-underline-offset:6px}
 .contact-terminal .contact-email{font:clamp(17px,2vw,27px)/1.4 var(--mono);letter-spacing:-.04em;color:var(--terminal-accent);overflow-wrap:anywhere;margin-right:auto}
 .contact-terminal .copy-email{color:var(--terminal-soft);padding:8px 0;font-size:9px}
 .terminal-output{min-height:65px;max-height:186px;overflow:auto;scrollbar-width:thin;scrollbar-color:#71825f77 transparent;margin:22px 0 14px;padding-right:8px;font:12px/1.8 var(--mono);overflow-wrap:anywhere}

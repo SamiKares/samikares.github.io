@@ -168,7 +168,7 @@
     { title: 'Projektit', hint: 'Sivu', href: 'ai.html', words: 'koodi automaatio ai github projektit' },
     { title: 'Valokuva-arkisto', hint: 'Sivu', href: 'photography.html', words: 'valokuvaus skate lumi ihmiset' },
     { title: 'Ota yhteyttä', hint: 'Yhteys', href: 'index.html#yhteys', words: 'mail sähköposti yhteys contact' },
-    { title: 'Lataa CV / PDF', hint: 'Tiedosto', href: 'assets/documents/sami-karesniemi-cv-20261102.pdf', words: 'resume ansioluettelo cv pdf' },
+    { title: 'Lataa CV / PDF', hint: 'Tiedosto', href: 'assets/documents/sami-karesniemi-cv-20261102-v2.pdf', words: 'resume ansioluettelo cv pdf' },
     {"title": "Data-Driven Endpoint Security", "hint": "Insinöörityö", "href": "ai.html#thesis", "words": "tietokanta cve kyberturvasyötteet intune endpoint opinnäytetyö"},
     {"title": "SOC Command Center Pro", "hint": "Projekti", "href": "ai.html#soc", "words": "fortinet tietoturva verkko"},
     {"title": "Paikallinen konenäkö", "hint": "Projekti", "href": "ai.html#vision", "words": "kamerat hanwha opencv yolo"},
@@ -220,6 +220,23 @@
   });
 
   // Decode only after a real pointer or keyboard activation.
+  function revealEmail(button, event, focus = true) {
+    if (!(event instanceof Event) || !event.isTrusted || !button?.isConnected) return;
+    const terminal = button.closest('.contact-terminal');
+    const address = [40,58,54,50,27,48,58,41,62,40,53,50,62,54,50,117,61,50].map(value => String.fromCharCode(value ^ 91)).join('');
+    const link = document.createElement('a');
+    link.className = 'contact-email';
+    link.href = 'mailto:' + address;
+    link.textContent = address;
+    button.replaceWith(link);
+    const copy = terminal?.querySelector('[data-copy]');
+    if (copy) { copy.dataset.copy = address; copy.hidden = false; }
+    if (focus) link.focus({ preventScroll: true });
+    return link;
+  }
+  window.skRevealEmail = revealEmail;
+  $$('[data-reveal-email]').forEach(button => button.addEventListener('click', event => revealEmail(button, event)));
+
   function revealPhone(button, event, focus = true) {
     if (!(event instanceof Event) || !event.isTrusted || !button?.isConnected) return;
     const number = [112, 104, 110, 99, 111, 110, 106, 107, 110, 106, 109, 106, 109].map(value => String.fromCharCode(value ^ 91)).join('');
@@ -236,6 +253,7 @@
 
   $$('[data-copy]').forEach(button => button.addEventListener('click', async () => {
     const value = button.dataset.copy;
+    if (!value) return;
     const previousFocus = document.activeElement;
     try {
       if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(value);

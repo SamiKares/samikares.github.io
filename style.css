@@ -62,3 +62,17 @@ dialog{border:1px solid var(--line);background:var(--paper);color:var(--ink);pad
 @media(max-width:380px){.case-preview{width:51px;height:41px}}
 @media(prefers-reduced-motion:reduce){.project-preview{transition:none}.project-preview:hover{transform:none}}
 @media print{.cv-project-link{font-size:9pt;margin-top:10px}.phone-contact{display:none}}
+
+/* Profile positioning and hands-on lab */
+.hero-role{font-size:12px;font-weight:500;max-width:500px}
+.hero-background{font:10px/1.8 var(--mono);max-width:470px;color:var(--sub);border-left:2px solid var(--olive);padding-left:13px;margin-top:18px}
+.personal-lab{margin-top:35px;padding:25px;border:1px solid var(--line);background:var(--soft)}
+.personal-lab-heading{display:flex;align-items:baseline;justify-content:space-between;gap:15px;margin-bottom:23px}
+.personal-lab-heading .micro{font-size:8px;color:var(--olive)}
+.personal-lab-heading h3{font-size:25px;letter-spacing:-.035em}
+.personal-lab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px}
+.personal-lab-grid p{font-size:12px;line-height:1.8;color:var(--sub)}
+.personal-lab-grid strong{display:block;color:var(--ink);font-size:12px;font-weight:500;margin-bottom:9px}
+@media(max-width:900px){.personal-lab-grid{grid-template-columns:1fr;gap:20px}.personal-lab-grid strong{margin-bottom:3px}}
+@media(max-width:600px){.hero-background{font-size:9px;max-width:100%}.personal-lab{padding:22px}.personal-lab-heading{align-items:flex-start;flex-direction:column;gap:8px}.personal-lab-heading h3{font-size:27px}}
+@media print{.hero-background{font:8pt/1.5 monospace}.personal-lab{padding:14px;margin-top:15px}.personal-lab-grid{grid-template-columns:repeat(3,1fr);gap:15px}.personal-lab-grid p,.personal-lab-grid strong{font-size:8pt}.personal-lab-heading h3{font-size:12pt}.personal-lab-heading{margin-bottom:12px}}

@@ -1,20 +1,22 @@
+Kevyt päivityspaketti nykyiseen GitHub-repositorioon. Alkuperäiset 215 JPG-kuvaa jäävät paikoilleen `assets/photography/`-kansioon, eivätkä ne sisälly tähän pakettiin.
+
 # Sami Karesniemi — portfolio
 
-Kevyt päivityspaketti nykyiseen GitHub-sivustoon. Ei asennusta, rakennusvaihetta tai ulkoisia JavaScript- ja fonttipalveluja. Julkaistavat tiedostot ovat paketin juuressa.
+Valmis staattinen sivusto. Ei asennusta, rakennusvaihetta tai ulkoisia JavaScript- ja fonttipalveluja. Julkaistavat tiedostot ovat paketin juuressa.
 
 Sivutekstit ja otsikot on tiivistetty 2.11.2026. Tekstit kuvaavat suoraan työtä, työkaluja ja projektien tilaa.
 
 ## Käyttö
 
-Avaa `index.html` selaimessa. Julkaise sivusto kopioimalla paketin sisältö palvelimen tai GitHub Pages -repositorion juureen. `index.html` ja `assets` kuuluvat samalle tasolle. Säilytä olemassa oleva `CNAME`, jos käytössäsi on oma verkkotunnus.
+Avaa `index.html` selaimessa. Julkaise sivusto kopioimalla tämän paketin sisältö palvelimen tai GitHub Pages -repositorion juureen. `index.html` ja `assets` kuuluvat samalle tasolle. Säilytä olemassa oleva `CNAME`, jos käytössäsi on oma verkkotunnus.
 
 ## Sisältö
 
 - `index.html`: CV, työkokemus, osaaminen, projektinostot ja yhteystiedot.
 - `ai.html`: 12 projektikuvausta, suodatus ja konenäön tilalogiikan selaindemo.
-- `photography.html`: 190 kuvaa, suodatus ja kuvakatselu. Kuvat haetaan alkuperäisillä JPG-tiedostonimillä `assets/photography/`-kansiosta. Alkuperäiset 215 JPG-tiedostoa säilyvät GitHubin assets/photography/-kansiossa. Valokuvat eivät sisälly tähän kevyeen päivityspakettiin; samojen kuvien rinnakkaisversioita ei toisteta galleriassa.
+- `photography.html`: 190 kuvaa, suodatus ja kuvakatselu. Kuvat haetaan alkuperäisillä JPG-tiedostonimillä `assets/photography/`-kansiosta. Paketti sisältää liitteen kaikki 215 JPG-tiedostoa; samojen kuvien rinnakkaisversioita ei toisteta galleriassa.
 - `cv.html`: erillinen CV-näkymä. Sivuilla on myös tulostustyylit.
-- `assets/documents/sami-karesniemi-cv-20261102.pdf`: PDF-CV, jossa päivitetyt yhteystiedot ja Turvabotti-linkki.
+- `assets/documents/sami-karesniemi-cv-20261102-v2.pdf`: Yhden A4-sivun CV: nykyinen KLINGER-rooli, insinöörityö, projektit, koulutus ja oma labra.
 
 Sisältöjä voi muokata suoraan HTML-tiedostoista. Projektikuvausten lähde on `projects-data.js` ja kuva-arkiston lähde `assets/gallery-data.js`. Perusulkoasu on `style.css`-tiedostossa. Yhteystietoterminaali, projektinostot ja kilpisiirtymä käyttävät lisäksi omia CSS-tiedostojaan. Sivujen yhteiset toiminnot ovat `common.js`-tiedostossa; projekti- ja galleriatoiminnot omissa tiedostoissaan.
 
@@ -45,6 +47,8 @@ Valokuva-arkiston polut: `assets/gallery-data.js` ja HTML:n ensimmäiset 18 kuva
 
 Projektit alkavat Data-Driven Endpoint Securitystä, SOC Command Centeristä, teollisuuden konenäöstä, SafetyScanista ja laiteinventaarion tietokannasta. Tietokannan ja reaaliaikaisten CVE- sekä kyberturvasyötteiden yhteys kuvataan insinöörityön yhteydessä. SafetyScan on turvavarusteiden käytön konenäköseurantaan tarkoitettu prototyyppi. PowerShell-ohjatut Intune-päivitykset sisältävät Adobe Readerin ja Acrobatin esimerkin.
 
-Yhteystietoterminaali toimii tiedostoilla `contact-terminal.js` ja `contact-terminal.css`. Komennot: `apua`, `sähköposti`, `kopioi`, `puhelin`, `github`, `linkedin`, `cv`, `projektit`, `tyhjennä`. Nuolinäppäimet selaavat komentoja. Toiminnot käsittelevät yhteystietoja ja linkkejä selaimessa. Puhelinnumero tuodaan näkyviin vasta käyttäjän toiminnolla. Konenäköhavainteen hihna on vaakasuorassa.
+Yhteystietoterminaali toimii tiedostoilla `contact-terminal.js` ja `contact-terminal.css`. Komennot: `apua`, `sähköposti`, `kopioi`, `puhelin`, `github`, `linkedin`, `cv`, `projektit`, `tyhjennä`. Nuolinäppäimet selaavat komentoja. Toiminnot käsittelevät yhteystietoja ja linkkejä selaimessa. Sähköpostiosoite ja puhelinnumero tuodaan näkyviin vasta käyttäjän painalluksella tai yhteystietokomennolla. Myös sähköpostin kopiointipainike näkyy vasta osoitteen avaamisen jälkeen. Konenäköhavainteen hihna on vaakasuorassa.
 
 GitHub-päivityksen ohje on `GITHUB_PAIVITYS.md`. Kuvausten tarkistuslähteet ovat `PROJEKTILAHTEET.md`-tiedostossa.
+
+Profiili painottaa päätelaitehallintaa, tietoturva-automaatiota ja teollisuuden Edge AI:ta. Virallinen KLINGER-tehtävänimike säilyy työhistoriassa. Elektroniikan ja tietoliikenteen pohja näkyy jo alussa; Heltech-opinnot on päivitetty vuosiin 2005–2009. Aiempi logistiikkaura on tiivistetty. Myös erillinen CV-näkymä sisältää kolme projektinostoa. Oma labra kertoo tiedonpalautuksesta, laitteistosta ja paikallisen tekoälyn kokeiluista. Nessus on kuvattu haavoittuvuuksien hallinnan ja auditoinnin työkaluna.

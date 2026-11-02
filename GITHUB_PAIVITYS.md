@@ -30,12 +30,16 @@ Nykyinen `assets/photography/` ja mahdollinen `CNAME` säilytetään. Kevyt pake
 
 ## 3. Tallenna ja tarkista
 
-Kirjoita muutoksen kuvaukseksi esimerkiksi **Update portfolio projects and contact terminal** ja tallenna muutokset valittuun julkaisuhaaraan. Jos GitHub edellyttää pull requestia, vie muutos sitä kautta samaan haaraan.
+Kirjoita muutoksen kuvaukseksi esimerkiksi **Update portfolio profile and printable CV** ja tallenna muutokset valittuun julkaisuhaaraan. Jos GitHub edellyttää pull requestia, vie muutos sitä kautta samaan haaraan.
 
 Odota Pages-julkaisun valmistumista. Avaa sivusto ja päivitä välimuisti Windowsissa painamalla **Ctrl + F5**. Tarkista:
 
+- Etusivun profiili painottaa päätelaitehallintaa, tietoturva-automaatiota ja teollisuuden Edge AI:ta.
+- PDF-CV avautuu uutena yhden A4-sivun versiona ja sisältää KLINGER-roolin.
+- CV-näkymässä näkyvät kolme projektinostoa.
 - Data-Driven Endpoint Security on ensimmäinen projekti.
 - SOC, konenäkö, SafetyScan ja laiteinventaarion tietokanta seuraavat sitä.
+- Sähköposti ja puhelinnumero ovat terminaalissa aluksi piilossa ja avautuvat painikkeesta tai komennolla.
 - Yhteystietoterminaalissa toimivat `apua`, `sähköposti`, `puhelin` ja `cv`.
 - Konenäködemon hihna on suorassa.
 - Kuvagalleria avaa alkuperäiset JPG-kuvat.
