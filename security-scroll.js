@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
 window.SKPage.register('security-scroll', scope => {
   'use strict';
   const setTimeout = scope.timeout.bind(scope);
@@ -9,13 +5,6 @@ window.SKPage.register('security-scroll', scope => {
   const requestAnimationFrame = scope.frame.bind(scope);
   const IntersectionObserver = scope.observer(window.IntersectionObserver);
   const ResizeObserver = scope.observer(window.ResizeObserver);
-<<<<<<< Updated upstream
-=======
-=======
-(() => {
-  'use strict';
->>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
->>>>>>> Stashed changes
 
   const source = document.querySelector('.hero [data-part="cyber-security"]');
   const dock = document.querySelector('#security-dock');
@@ -265,12 +254,4 @@ window.SKPage.register('security-scroll', scope => {
   }
   document.fonts?.ready.then(() => schedule(true));
   updatePreference();
-<<<<<<< Updated upstream
 });
-=======
-<<<<<<< HEAD
-});
-=======
-})();
->>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
->>>>>>> Stashed changes

@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
 window.SKPage.register('gallery', scope => {
   'use strict';
   const setTimeout = scope.timeout.bind(scope);
@@ -9,13 +5,6 @@ window.SKPage.register('gallery', scope => {
   const requestAnimationFrame = scope.frame.bind(scope);
   const IntersectionObserver = scope.observer(window.IntersectionObserver);
   const ResizeObserver = scope.observer(window.ResizeObserver);
-<<<<<<< Updated upstream
-=======
-=======
-(() => {
-  'use strict';
->>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
->>>>>>> Stashed changes
   const photos = window.SK_GALLERY || [];
   const grid = document.querySelector('#photo-grid');
   const filters = [...document.querySelectorAll('[data-gallery-filter]')];
@@ -95,12 +84,4 @@ window.SKPage.register('gallery', scope => {
   }, { passive: true });
   // The server-rendered first page remains usable and visible before scripts execute.
   if (photos.length) render();
-<<<<<<< Updated upstream
 });
-=======
-<<<<<<< HEAD
-});
-=======
-})();
->>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
->>>>>>> Stashed changes
