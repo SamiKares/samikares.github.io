@@ -1,14 +1,36 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 Kevyt päivityspaketti: säilytä GitHubin assets/photography-kansion alkuperäiset kuvat.
 
 # Sami Karesniemi — portfolio
 
 Valmis staattinen sivusto. Ei asennusta, rakennusvaihetta tai ulkoisia JavaScript- ja fonttipalveluja. Julkaistavat tiedostot ovat `dist`-kansiossa.
+<<<<<<< Updated upstream
+=======
+=======
+Kevyt päivityspaketti nykyiseen GitHub-repositorioon. Alkuperäiset 215 JPG-kuvaa jäävät paikoilleen `assets/photography/`-kansioon, eivätkä ne sisälly tähän pakettiin.
+
+# Sami Karesniemi — portfolio
+
+Valmis staattinen sivusto. Ei asennusta, rakennusvaihetta tai ulkoisia JavaScript- ja fonttipalveluja. Julkaistavat tiedostot ovat paketin juuressa.
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
 
 Sivutekstit ja otsikot on tiivistetty 2.11.2026. Tekstit kuvaavat suoraan työtä, työkaluja ja projektien tilaa.
 
 ## Käyttö
 
+<<<<<<< Updated upstream
 Avaa `index.html` selaimessa. Julkaise sivusto kopioimalla `dist`-kansion sisältö palvelimen tai GitHub Pages -repositorion juureen. `index.html` ja `assets` kuuluvat samalle tasolle. Säilytä olemassa oleva `CNAME`, jos käytössäsi on oma verkkotunnus.
+=======
+<<<<<<< HEAD
+Avaa `index.html` selaimessa. Julkaise sivusto kopioimalla `dist`-kansion sisältö palvelimen tai GitHub Pages -repositorion juureen. `index.html` ja `assets` kuuluvat samalle tasolle. Säilytä olemassa oleva `CNAME`, jos käytössäsi on oma verkkotunnus.
+=======
+Avaa `index.html` selaimessa. Julkaise sivusto kopioimalla tämän paketin sisältö palvelimen tai GitHub Pages -repositorion juureen. `index.html` ja `assets` kuuluvat samalle tasolle. Säilytä olemassa oleva `CNAME`, jos käytössäsi on oma verkkotunnus.
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
 
 ## Sisältö
 
@@ -24,10 +46,19 @@ Konenäköhavainne on selaimessa toimiva tilasimulaatio. Se ei muodosta kamerayh
 
 ## Käyttöliittymä
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 Sivujen vaihdossa näkymä jakautuu rekursiivisesti muodostettuihin kolmiopaloihin. Palat erkanevat vaiheittain, kiertyvät laajalle ja kokoavat seuraavan sivun samoista kohdista. Jokainen vaihto saa uuden satunnaissiemenen; jako, lentoradat ja napsautuskohdasta etenevä ajoitus vaihtuvat. Toteutus käyttää sivun todellista sisältöä ja selaimen Web Animations APIa, ilman ulkoisia animaatiokirjastoja.
 
 `fractal-geometry.js` muodostaa jaon, `fractal-navigation.js` hoitaa sivunvaihdon ja `fractal-navigation.css` siirtymän kerroksen. `page-lifecycle.js` vapauttaa vanhan sivun tapahtumakuuntelijat, ajastimet ja tarkkailijat ennen uuden sivun alustamista. Mobiilissa paloja on 24, tabletissa 36 ja suurella näytöllä 52. Takaisin/eteenpäin-selaus ja suorat projektilinkit toimivat. Liikkeen vähentämisen asetuksella sekä paikallisessa `file://`-avauksessa käytetään tavallista sivunvaihtoa. Animaatiot toimivat HTTP(S)-palvelimella, esimerkiksi GitHub Pagesissa.
 
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
 Etusivun tietoturvakilpi irtoaa alun grafiikasta vierityksen mukana. Sen kuusi osaa leviävät laajalle erillisille lentoradoille, keskiosa kasvaa ja muuttaa muotoaan, ja osat kokoontuvat ensimmäisen tietoturvaprojektin kehykseen. Hajonta mukautuu näytön leveyteen. Ylös vierittäessä se palaa takaisin. Liike on pois käytöstä, kun laitteen asetuksissa on valittu animaatioiden vähentäminen. Toteutus on tiedostoissa `security-scroll.js` ja `security-scroll.css`.
 
 - Vaalea ja tumma teema; valinta muistetaan selaimessa.

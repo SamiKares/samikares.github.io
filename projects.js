@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 window.SKPage.register('projects', scope => {
   'use strict';
   const setTimeout = scope.timeout.bind(scope);
@@ -5,6 +9,13 @@ window.SKPage.register('projects', scope => {
   const requestAnimationFrame = scope.frame.bind(scope);
   const IntersectionObserver = scope.observer(window.IntersectionObserver);
   const ResizeObserver = scope.observer(window.ResizeObserver);
+<<<<<<< Updated upstream
+=======
+=======
+(() => {
+  'use strict';
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
   const projects = window.SK_PROJECTS || [];
   const cards = [...document.querySelectorAll('.project-card')];
   const filters = [...document.querySelectorAll('[data-filter]')];
@@ -66,14 +77,30 @@ window.SKPage.register('projects', scope => {
       link.addEventListener('click', () => { dialog.dataset.keepHash = 'true'; dialog.close(); }); actions.append(link);
     }
     const contact = element('a', 'Yhteystiedot ↗', 'button outline'); contact.href = 'index.html#yhteys'; actions.append(contact);
+<<<<<<< Updated upstream
     try { history.replaceState(history.state, '', '#' + project.id); } catch {}
+=======
+<<<<<<< HEAD
+    try { history.replaceState(history.state, '', '#' + project.id); } catch {}
+=======
+    try { history.replaceState(null, '', '#' + project.id); } catch {}
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
     window.skOpenDialog(dialog, trigger); dialog.scrollTop = 0;
   }
   document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => openProject(button.dataset.project, button)));
   dialog?.addEventListener('close', () => {
     if (dialog.dataset.keepHash === 'true') { delete dialog.dataset.keepHash; return; }
     if (projectById.has(location.hash.slice(1))) {
+<<<<<<< Updated upstream
       try { history.replaceState(history.state, '', location.pathname + location.search); } catch {}
+=======
+<<<<<<< HEAD
+      try { history.replaceState(history.state, '', location.pathname + location.search); } catch {}
+=======
+      try { history.replaceState(null, '', location.pathname + location.search); } catch {}
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
     }
   });
   function openHash() {
@@ -85,8 +112,17 @@ window.SKPage.register('projects', scope => {
     }
   }
   addEventListener('hashchange', openHash);
+<<<<<<< Updated upstream
   if (document.documentElement.classList.contains('fractal-busy')) document.addEventListener('sk:navigation-ready', openHash, { once: true });
   else openHash();
+=======
+<<<<<<< HEAD
+  if (document.documentElement.classList.contains('fractal-busy')) document.addEventListener('sk:navigation-ready', openHash, { once: true });
+  else openHash();
+=======
+  openHash();
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
 
   const rois = [...document.querySelectorAll('[data-roi]')];
   const state = rois.map(() => ({ missing: false, alert: false, timer: null }));
@@ -148,4 +184,12 @@ window.SKPage.register('projects', scope => {
     events = []; addEvent('Havainne nollattu. Kaikki kohteet paikallaan.'); renderState();
   });
   addEventListener('pagehide', () => state.forEach(item => clearTimeout(item.timer)));
+<<<<<<< Updated upstream
 });
+=======
+<<<<<<< HEAD
+});
+=======
+})();
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes

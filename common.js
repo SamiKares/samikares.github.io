@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 window.SKPage.register('common', scope => {
   'use strict';
   const setTimeout = scope.timeout.bind(scope);
@@ -5,6 +9,13 @@ window.SKPage.register('common', scope => {
   const requestAnimationFrame = scope.frame.bind(scope);
   const IntersectionObserver = scope.observer(window.IntersectionObserver);
   const ResizeObserver = scope.observer(window.ResizeObserver);
+<<<<<<< Updated upstream
+=======
+=======
+(() => {
+  'use strict';
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -272,4 +283,12 @@ window.SKPage.register('common', scope => {
       notify('Sähköpostiosoite kopioitu.');
     } catch { notify('Kopioi osoite: ' + value); }
   }));
+<<<<<<< Updated upstream
 });
+=======
+<<<<<<< HEAD
+});
+=======
+})();
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes

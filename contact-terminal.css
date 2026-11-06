@@ -53,3 +53,12 @@
 @media(max-width:480px){.terminal-bar{padding:13px 16px;gap:12px;font-size:8px}.terminal-location{display:none}.terminal-body{padding:22px 17px 18px}.terminal-name{font-size:27px}.terminal-role{font-size:9px}.terminal-section-heading{align-items:flex-start;flex-direction:column;gap:13px}.terminal-section-heading h2{font-size:48px}.terminal-prompt{font-size:10px}.terminal-command{gap:9px;padding:0 10px}.terminal-command input{font-size:16px}.terminal-shortcuts{gap:7px}.terminal-shortcuts button{font-size:9px;padding:8px 10px}.terminal-footer{padding:12px 16px;font-size:7px}.contact-terminal .copy-email svg{width:17px;height:17px}}
 @media(prefers-reduced-motion:reduce){.terminal-command,.terminal-shortcuts button{transition:none}}
 @media print{.contact-terminal{display:none!important}}
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+.terminal-linkedin-cta{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid #9bb87888;background:#8aa76d1f;color:var(--terminal-accent)!important;font:11px/1.4 var(--mono);transition:background .2s,border-color .2s,transform .2s}
+.terminal-linkedin-cta:hover{background:#8aa76d38;border-color:var(--terminal-accent)}
+.terminal-privacy-note{font:10px/1.6 var(--mono);color:var(--terminal-soft);max-width:34ch;margin-top:4px}
+>>>>>>> 5769209a68eb77c3d51b96ada92da984e22aa513
+>>>>>>> Stashed changes
