@@ -1,5 +1,10 @@
-(() => {
+window.SKPage.register('gallery', scope => {
   'use strict';
+  const setTimeout = scope.timeout.bind(scope);
+  const setInterval = scope.interval.bind(scope);
+  const requestAnimationFrame = scope.frame.bind(scope);
+  const IntersectionObserver = scope.observer(window.IntersectionObserver);
+  const ResizeObserver = scope.observer(window.ResizeObserver);
   const photos = window.SK_GALLERY || [];
   const grid = document.querySelector('#photo-grid');
   const filters = [...document.querySelectorAll('[data-gallery-filter]')];
@@ -79,4 +84,4 @@
   }, { passive: true });
   // The server-rendered first page remains usable and visible before scripts execute.
   if (photos.length) render();
-})();
+});

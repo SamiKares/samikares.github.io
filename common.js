@@ -1,5 +1,10 @@
-(() => {
+window.SKPage.register('common', scope => {
   'use strict';
+  const setTimeout = scope.timeout.bind(scope);
+  const setInterval = scope.interval.bind(scope);
+  const requestAnimationFrame = scope.frame.bind(scope);
+  const IntersectionObserver = scope.observer(window.IntersectionObserver);
+  const ResizeObserver = scope.observer(window.ResizeObserver);
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -267,4 +272,4 @@
       notify('Sähköpostiosoite kopioitu.');
     } catch { notify('Kopioi osoite: ' + value); }
   }));
-})();
+});

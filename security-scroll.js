@@ -1,5 +1,10 @@
-(() => {
+window.SKPage.register('security-scroll', scope => {
   'use strict';
+  const setTimeout = scope.timeout.bind(scope);
+  const setInterval = scope.interval.bind(scope);
+  const requestAnimationFrame = scope.frame.bind(scope);
+  const IntersectionObserver = scope.observer(window.IntersectionObserver);
+  const ResizeObserver = scope.observer(window.ResizeObserver);
 
   const source = document.querySelector('.hero [data-part="cyber-security"]');
   const dock = document.querySelector('#security-dock');
@@ -249,4 +254,4 @@
   }
   document.fonts?.ready.then(() => schedule(true));
   updatePreference();
-})();
+});

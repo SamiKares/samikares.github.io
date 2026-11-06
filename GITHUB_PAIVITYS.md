@@ -21,8 +21,8 @@ Lataa paketin sisältö purettuna. Säilytä kansiorakenne. Päivitetyt samannim
 | Päivitettävä osa | Tiedostot |
 | --- | --- |
 | Sivut | `index.html`, `ai.html`, `cv.html`, `photography.html` |
-| Ulkoasu | `style.css`, `contact-terminal.css`, `project-highlights.css`, `security-scroll.css` |
-| Toiminnot | `common.js`, `contact-terminal.js`, `projects.js`, `projects-data.js`, `security-scroll.js`, `gallery.js` |
+| Ulkoasu | `style.css`, `contact-terminal.css`, `project-highlights.css`, `security-scroll.css`, `fractal-navigation.css` |
+| Toiminnot | `page-lifecycle.js`, `fractal-geometry.js`, `fractal-navigation.js`, `common.js`, `contact-terminal.js`, `projects.js`, `projects-data.js`, `security-scroll.js`, `gallery.js` |
 | Aineistot | Paketin `assets`-kansion sisältö, kuten `gallery-data.js`, projektikuvat, fontit ja PDF-CV |
 | Staattinen julkaisu | `.nojekyll`, jos tiedosto näkyy purkamisen jälkeen |
 
@@ -30,7 +30,7 @@ Nykyinen `assets/photography/` ja mahdollinen `CNAME` säilytetään. Kevyt pake
 
 ## 3. Tallenna ja tarkista
 
-Kirjoita muutoksen kuvaukseksi esimerkiksi **Update portfolio profile and printable CV** ja tallenna muutokset valittuun julkaisuhaaraan. Jos GitHub edellyttää pull requestia, vie muutos sitä kautta samaan haaraan.
+Kirjoita muutoksen kuvaukseksi esimerkiksi **Add fractal page transitions** ja tallenna muutokset valittuun julkaisuhaaraan. Jos GitHub edellyttää pull requestia, vie muutos sitä kautta samaan haaraan.
 
 Odota Pages-julkaisun valmistumista. Avaa sivusto ja päivitä välimuisti Windowsissa painamalla **Ctrl + F5**. Tarkista:
 
@@ -43,6 +43,9 @@ Odota Pages-julkaisun valmistumista. Avaa sivusto ja päivitä välimuisti Windo
 - Yhteystietoterminaalissa toimivat `apua`, `sähköposti`, `puhelin` ja `cv`.
 - Konenäködemon hihna on suorassa.
 - Kuvagalleria avaa alkuperäiset JPG-kuvat.
+- CV-, projekti- ja valokuvaussivut hajoavat kolmioiksi ja muodostuvat uudelleen sivua vaihdettaessa. Kokeile myös selaimen Takaisin-painiketta.
+
+Lataa kaikki taulukon sivu- ja toimintotiedostot samalla päivityksellä: uudet skriptit tarvitsevat `page-lifecycle.js`-tiedoston. Fraktaalisiirtymä toimii julkaistulla HTTP(S)-sivulla. Paikallinen kaksoisnapsautus (`file://`) ja käyttöjärjestelmän liikkeen vähentämisen asetus käyttävät tavallisia sivunvaihtoja.
 
 ## Täyspaketti
 
